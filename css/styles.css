@@ -219,7 +219,7 @@ h3 {
 #usuario {
   color:#000000;
   font-family: 'Inter', sans-serif;
-  font-size: 30px;  
+  font-size: 28px;  
   font-weight:200;
   padding-left: 50px;
   background: url(../img/useruser.jpg)  no-repeat 10px center;
@@ -232,7 +232,7 @@ h3 {
 #contrasena {
   color:#000000;
   font-family: 'Inter', sans-serif;
-  font-size: 30px;  
+  font-size: 28px;  
   font-weight:200;
   padding-left: 50px;
   background:url(../img/candadologin.png)  no-repeat 10px center;
@@ -240,21 +240,46 @@ h3 {
   background-color: #E8F5F4;    /* celestito */
   box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
   transition: all 0.3s ease;    /* animación suave */
+    position: relative;
+  z-index: 1;                     /* botón arriba de la mano */
   }
 
 .logo-video {
   width: 330px;
   height: 330px;
   display: block;
-  margin: 0 auto;  /* centra el video */
+  margin: 0;  /* centra el video */
 }
 #btnIngresar {
   color:white
   font-family: 'inika', sans-serif;
-  font-size: 44px;  
+  font-size: 40px;  
   font-weight: 400;
 }
-.hand-icon {
-   width: 10px;
-  height:10px;
+
+.hand {
+  position: fixed;
+  left: 44%;                         /* centrada horizontal */
+  bottom: 0;                         /* nace desde abajo */
+  transform: translateX(-50%) rotate(-8deg); 
+  width: 900px;                      /* ajustá tamaño según lo necesites */
+  height: auto;
+  z-index: 0;                        /* por detrás del botón */
+  pointer-events: none;              /* no bloquea clicks */
+}
+
+#btnIngresar{
+  position: relative;
+  z-index: 1;                     /* botón arriba de la mano */
+}
+html, body {
+  margin: 0;       /* quita márgenes por defecto */
+  padding: 0;
+  height: 100%;    /* asegura que ocupen todo */
+  overflow: hidden; /* evita scroll */
+}
+
+p {
+  position: relative;
+  z-index: 1;          
 }
