@@ -209,21 +209,23 @@ a.custom-card:hover {
 }
 
 h3 {
+  position: relative;
   color: black;
   font-family: 'Inter', sans-serif;
-  font-size: 36px;  
+  font-size: 32px;  
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
 }
 #usuario {
+  position: relative;
   color:#000000;
   font-family: 'Inter', sans-serif;
-  font-size: 28px;  
+  font-size: 24px;  
   font-weight:200;
   padding-left: 50px;
   background: url(../img/useruser.jpg)  no-repeat 10px center;
-  background-size: 30px;
+  background-size: 25px;
   background-color: #E8F5F4;    /* celestito */
   box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
   transition: all 0.3s ease;    /* animación suave */
@@ -232,7 +234,7 @@ h3 {
 #contrasena {
   color:#000000;
   font-family: 'Inter', sans-serif;
-  font-size: 28px;  
+  font-size: 24px;  
   font-weight:200;
   padding-left: 50px;
   background:url(../img/candadologin.png)  no-repeat 10px center;
@@ -245,15 +247,18 @@ h3 {
   }
 
 .logo-video {
-  width: 330px;
-  height: 330px;
+  position: relative;
+  width: 310px;
+  height: 310px;
   display: block;
   margin: 0;  /* centra el video */
+  
 }
 #btnIngresar {
+  position: relative;
   color:white
   font-family: 'inika', sans-serif;
-  font-size: 40px;  
+  font-size: 36px;  
   font-weight: 400;
 }
 
