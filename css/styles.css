@@ -210,5 +210,51 @@ a.custom-card:hover {
 
 h3 {
   color: black;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;  
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+}
+#usuario {
+  color:#000000;
+  font-family: 'Inter', sans-serif;
+  font-size: 30px;  
+  font-weight:200;
+  padding-left: 50px;
+  background: url(../img/useruser.jpg)  no-repeat 10px center;
+  background-size: 30px;
+  background-color: #E8F5F4;    /* celestito */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
+  transition: all 0.3s ease;    /* animación suave */
+  
+}
+#contrasena {
+  color:#000000;
+  font-family: 'Inter', sans-serif;
+  font-size: 30px;  
+  font-weight:200;
+  padding-left: 50px;
+  background:url(../img/candadologin.png)  no-repeat 10px center;
+  background-size: 25px;
+  background-color: #E8F5F4;    /* celestito */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
+  transition: all 0.3s ease;    /* animación suave */
+  }
+
+.logo-video {
+  width: 330px;
+  height: 330px;
+  display: block;
+  margin: 0 auto;  /* centra el video */
+}
+#btnIngresar {
+  color:white
+  font-family: 'inika', sans-serif;
+  font-size: 44px;  
+  font-weight: 400;
+}
+.hand-icon {
+   width: 10px;
+  height:10px;
 }
