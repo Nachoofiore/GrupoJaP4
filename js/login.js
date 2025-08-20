@@ -14,6 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("usuario", usuario);
 
     // Redirigir a otra página
-    window.location.href = "inicio.html";
+    window.location.href = "index.html";
   });
 });
