@@ -1,3 +1,4 @@
+
 document.getElementById("btnIngresar").addEventListener("click", function () {
     let usuario = document.getElementById("usuario").value.trim();
     let contrasena = document.getElementById("contrasena").value.trim();
@@ -8,7 +9,9 @@ document.getElementById("btnIngresar").addEventListener("click", function () {
         localStorage.setItem("usuario", usuario);
         window.location.href = "index.html";
     }
-   }); 
+}); 
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const btnIngresar = document.getElementById("btnIngresar");
 
