@@ -278,7 +278,6 @@ html, body {
   margin: 0;       /* quita márgenes por defecto */
   padding: 0;
   height: 100%;    /* asegura que ocupen todo */
-  overflow: hidden; /* evita scroll */
 }
 
 p {
