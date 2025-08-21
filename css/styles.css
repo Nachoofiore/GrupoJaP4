@@ -242,7 +242,7 @@ h3 {
   background-color: #E8F5F4;    /* celestito */
   box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
   transition: all 0.3s ease;    /* animación suave */
-    position: relative;
+  position: relative;
   z-index: 1;                     /* botón arriba de la mano */
   }
 
@@ -251,6 +251,7 @@ h3 {
   width: 310px;
   height: auto;
   display: block;
+  border-radius: 130px;
  margin: -70px auto 8px;  /* 👈 el primer valor (top) lo sube */
 }
 
