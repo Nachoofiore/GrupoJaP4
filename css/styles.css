@@ -203,7 +203,6 @@ a.custom-card:hover {
   margin-top: 25px;
   font-size: 16px;
   width: 250px;
-  box-shadow: 0 0 20px rgba(201, 199, 253, 0.594) ;
   font-size: 27px;
   font-family:  'alike', serif;
 }
@@ -219,6 +218,7 @@ h3 {
 }
 #usuario {
   position: relative;
+  border-radius: 2000px;
   color:#000000;
   font-family: 'Inter', sans-serif;
   font-size: 24px;  
@@ -233,6 +233,7 @@ h3 {
 }
 #contrasena {
   color:#000000;
+  border-radius: 100px;
   font-family: 'Inter', sans-serif;
   font-size: 24px;  
   font-weight:200;
@@ -247,25 +248,26 @@ h3 {
   }
 
 .logo-video {
+  background-color: rgb(57, 99, 141);
   position: relative;
   width: 310px;
   height: auto;
   display: block;
+  border-radius: 2000px;
  margin: -70px auto 8px;  /* 👈 el primer valor (top) lo sube */
 }
 
 #btnIngresar {
   position: relative;
-  color:rgb(250, 245, 245)
+  border-radius: 2000px;
   font-family: "alike", sans-serif;
-  font-size: 44px;  
-  font-weight: 400;
-  z-index: 1;                     /* botón arriba de la mano */
+  font-size: 44px;
+  font-weight: 400;           
 }
 
 .hand {
   position: fixed;
-  left: 44%;                         /* centrada horizontal */
+  left: 50%;                         /* centrada horizontal */
   bottom: 0;                         /* nace desde abajo */
   transform: translateX(-50%) rotate(0deg); 
   width: 1050px;                      /* ajustá tamaño según lo necesites */
