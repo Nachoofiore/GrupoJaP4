@@ -263,6 +263,11 @@ h3 {
   font-family: "alike", sans-serif;
   font-size: 44px;
   font-weight: 400;           
+  color:rgb(250, 245, 245);
+  font-family:"alike", sans-serif;
+  font-size: 44px;  
+  font-weight: 400;
+  z-index: 1;                     /* botón arriba de la mano */
 }
 
 .hand {
