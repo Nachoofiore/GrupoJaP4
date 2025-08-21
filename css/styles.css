@@ -205,7 +205,7 @@ a.custom-card:hover {
   width: 250px;
   box-shadow: 0 0 20px rgba(201, 199, 253, 0.594) ;
   font-size: 27px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family:  'alike', serif;
 }
 
 h3 {
@@ -223,9 +223,9 @@ h3 {
   font-family: 'Inter', sans-serif;
   font-size: 24px;  
   font-weight:200;
-  padding-left: 50px;
+  padding-left: 55px;
   background: url(../img/useruser.jpg)  no-repeat 10px center;
-  background-size: 25px;
+  background-size: 33px;
   background-color: #E8F5F4;    /* celestito */
   box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
   transition: all 0.3s ease;    /* animación suave */
@@ -236,9 +236,9 @@ h3 {
   font-family: 'Inter', sans-serif;
   font-size: 24px;  
   font-weight:200;
-  padding-left: 50px;
+  padding-left: 55px;
   background:url(../img/candadologin.png)  no-repeat 10px center;
-  background-size: 25px;
+  background-size: 28px;
   background-color: #E8F5F4;    /* celestito */
   box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
   transition: all 0.3s ease;    /* animación suave */
@@ -249,34 +249,31 @@ h3 {
 .logo-video {
   position: relative;
   width: 310px;
-  height: 310px;
+  height: auto;
   display: block;
-  margin: 0;  /* centra el video */
-  
+ margin: -70px auto 8px;  /* 👈 el primer valor (top) lo sube */
 }
+
 #btnIngresar {
   position: relative;
-  color:white
-  font-family:'inika', sans-serif;
-  font-size: 38px;  
+  color:rgb(250, 245, 245)
+  font-family: "alike", sans-serif;
+  font-size: 44px;  
   font-weight: 400;
+  z-index: 1;                     /* botón arriba de la mano */
 }
 
 .hand {
   position: fixed;
   left: 44%;                         /* centrada horizontal */
   bottom: 0;                         /* nace desde abajo */
-  transform: translateX(-50%) rotate(-8deg); 
-  width: 900px;                      /* ajustá tamaño según lo necesites */
+  transform: translateX(-50%) rotate(0deg); 
+  width: 1050px;                      /* ajustá tamaño según lo necesites */
   height: auto;
   z-index: 0;                        /* por detrás del botón */
   pointer-events: none;              /* no bloquea clicks */
 }
 
-#btnIngresar{
-  position: relative;
-  z-index: 1;                     /* botón arriba de la mano */
-}
 html, body {
   margin: 0;       /* quita márgenes por defecto */
   padding: 0;
