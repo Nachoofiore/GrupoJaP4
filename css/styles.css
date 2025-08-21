@@ -188,3 +188,109 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.form-control {
+  border: 15px;
+  padding: 15px;
+  background-color: aliceblue;
+  margin-bottom: 25px;
+  outline:#aaadae;
+}
+
+.btn {
+  border: 0;
+  padding: 15px;
+  margin-top: 25px;
+  font-size: 16px;
+  width: 250px;
+  font-size: 27px;
+  font-family:  'alike', serif;
+}
+
+h3 {
+  position: relative;
+  color: black;
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;  
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+}
+#usuario {
+  position: relative;
+  border-radius: 2000px;
+  color:#000000;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;  
+  font-weight:200;
+  padding-left: 55px;
+  background: url(../img/useruser.jpg)  no-repeat 10px center;
+  background-size: 33px;
+  background-color: #E8F5F4;    /* celestito */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
+  transition: all 0.3s ease;    /* animación suave */
+  
+}
+#contrasena {
+  color:#000000;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;  
+  font-weight:200;
+  padding-left: 55px;
+  background:url(../img/candadologin.png)  no-repeat 10px center;
+  background-size: 28px;
+  background-color: #E8F5F4;    /* celestito */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
+  transition: all 0.3s ease;    /* animación suave */
+    position: relative;
+  z-index: 1;                     /* botón arriba de la mano */
+  }
+
+.logo-video {
+  background-color: rgb(57, 99, 141);
+  position: relative;
+  width: 310px;
+  height: auto;
+  display: block;
+  border-radius: 2000px;
+ margin: -70px auto 8px;  /* 👈 el primer valor (top) lo sube */
+}
+
+#btnIngresar {
+  position: relative;
+  border-radius: 2000px;
+  font-family: "alike", sans-serif;
+  font-size: 44px;
+  font-weight: 400;           
+  color:rgb(250, 245, 245);
+  font-family:"alike", sans-serif;
+  font-size: 44px;  
+  font-weight: 400;
+  z-index: 1;                     /* botón arriba de la mano */
+}
+
+.hand {
+  position: fixed;
+  left: 50%;                         /* centrada horizontal */
+  bottom: 0;                         /* nace desde abajo */
+  transform: translateX(-50%) rotate(0deg); 
+  width: 1050px;                      /* ajustá tamaño según lo necesites */
+  height: auto;
+  z-index: 0;                        /* por detrás del botón */
+  pointer-events: none;              /* no bloquea clicks */
+}
+
+html, body {
+  margin: 0;       /* quita márgenes por defecto */
+  padding: 0;
+  height: 100%;    /* asegura que ocupen todo */
+
+}
+
+p {
+
+  position: relative;
+  z-index: 1;          
+  text-align: center;
+}
