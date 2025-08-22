@@ -295,20 +295,25 @@ p {
 
 /* Contenedor principal autos */
 .contenedor {
-    max-width: 900px;
-    margin: 0 auto;
+    width: 3000px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+  align-items: flex-start; /* alineadas a la izquierda */
 }
 
 /* Tarjetas */
 .tarjeta {
     display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.15);
+    flex-direction: row;  /* imagen + texto en fila */
+     text-align: left;             /* textos alineados a la izquierda */
+    justify-content: flex-start; /* arranca desde la izquierda */
+    background-color: rgba(141, 191, 224, 0.521);
+    transform: translateX(-50%)
     padding: 20px;
-    border-radius: 20px;
+    margin: 15px 0;
+    border-radius: 44px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
     transition: transform 0.2s ease-in-out;
 }
@@ -319,24 +324,22 @@ p {
 
 /* Imagen */
 .tarjeta img {
-    width: 200px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 10px;
-    float: left;
+   width: 250px;
+   height: auto;  
+    
 }
 
 /* Texto */
 .tarjeta h2 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 2em;
     color: #ffffff;
     font-family: "irish grover", sans-serif;
 }
 
 .tarjeta p {
     margin: 5px 0;
-    font-size: 1em;
+    font-size: 1.5em;
     color: #e0e0e0;
     font-family: "judson", sans-serif;
 }
@@ -344,7 +347,7 @@ p {
 /* Precio */
 .precio {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1em;
     color: #fff;
     font-family: "inter", sans-serif;
 }
@@ -360,5 +363,3 @@ font-weight: semi bold;
 body {
   background-color: rgb(57, 99, 141);
 }
-
-
