@@ -289,10 +289,8 @@ html, body {
 }
 
 p {
-
   position: relative;
   z-index: 1;          
-  text-align: center;
 }
 
 /* Contenedor principal autos */
@@ -332,14 +330,15 @@ p {
 .tarjeta h2 {
     margin: 0;
     font-size: 1.5em;
-    color: #fff;
-    font-family: "Trebuchet MS", sans-serif;
+    color: #ffffff;
+    font-family: "irish grover", sans-serif;
 }
 
 .tarjeta p {
     margin: 5px 0;
     font-size: 1em;
     color: #e0e0e0;
+    font-family: "judson", sans-serif;
 }
 
 /* Precio */
@@ -347,12 +346,15 @@ p {
     font-weight: bold;
     font-size: 1.2em;
     color: #fff;
+    font-family: "inter", sans-serif;
 }
 
 /* Vendidos */
 .vendidos {
     font-size: 0.9em;
     color: #ddd;
+    font-family: "inter", sans-serif;
+font-weight: semi bold;
 }
 
 body {
