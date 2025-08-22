@@ -295,6 +295,65 @@ p {
   text-align: center;
 }
 
+/* Contenedor principal autos */
+.contenedor {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Tarjetas */
+.tarjeta {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.tarjeta:hover {
+    transform: scale(1.02);
+}
+
+/* Imagen */
+.tarjeta img {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+/* Texto */
+.tarjeta h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #fff;
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+.tarjeta p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #e0e0e0;
+}
+
+/* Precio */
+.precio {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+/* Vendidos */
+.vendidos {
+    font-size: 0.9em;
+    color: #ddd;
+=======
+
 body {
   background-color: rgb(57, 99, 141);
 }
