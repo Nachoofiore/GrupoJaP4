@@ -310,7 +310,7 @@ p {
      text-align: justify;
     justify-content: flex-start; /* arranca desde la izquierda */
     background-color: rgba(141, 191, 224, 0.521);
-    transform: translateX(-50%)
+    transform: translateX(-50%);
     padding: 20px;
     margin: 15px 0;
     border-radius: 44px;
@@ -363,3 +363,4 @@ font-weight: semi bold;
 body {
   background-color: rgb(57, 99, 141);
 }
+
