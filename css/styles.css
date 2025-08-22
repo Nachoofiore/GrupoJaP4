@@ -307,8 +307,8 @@ p {
 
 /* Contenedor principal autos */
 .contenedor {
-   flex: 1;               /* todas ocupan mismo espacio */
-  min-width: 200px;      /* ancho min */
+    flex: 1;               /* todas ocupan mismo espacio */
+    min-width: 200px;      /* ancho min */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -319,16 +319,13 @@ p {
 .tarjeta {
     display: flex;
     flex-direction: row;  /* imagen + texto en fila */
-     text-align: justify;
+    text-align: justify;
     justify-content: flex-start; /* arranca desde la izquierda */
     background-color: rgba(141, 191, 224, 0.521);
-    transform: translateX(-50%);
     padding: 20px;
     margin: 15px 0;
     border-radius: 44px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease-in-out;
-    min-width: 500px;
     min-height: 170px;
     max-height: 180px;
 }
