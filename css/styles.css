@@ -295,26 +295,28 @@ p {
 
 /* Contenedor principal autos */
 .contenedor {
-   flex: 1;               /* todas ocupan mismo espacio */
-  min-width: 200px;      /* ancho min */
+    flex: 1;               /* todas ocupan mismo espacio */
+    min-width: 100px;     /* ancho min */
+    max-width: 2000px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-  
 }
 
 /* Tarjetas */
 .tarjeta {
     display: flex;
     flex-direction: row;  /* imagen + texto en fila */
-     text-align: justify;
-    justify-content: flex-start; /* arranca desde la izquierda */
+    text-align: justify;
+    justify-content: left;
     background-color: rgba(141, 191, 224, 0.521);
     padding: 20px;
     margin: 15px 0;
     border-radius: 44px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
     transition: transform 0.2s ease-in-out;
+    min-height: 360px;
+    max-height: 370px;
 }
 
 .tarjeta:hover {
