@@ -325,6 +325,7 @@ p {
     height: auto;
     margin-right: 20px;
     border-radius: 10px;
+    float: left;
 }
 
 /* Texto */
@@ -352,8 +353,10 @@ p {
 .vendidos {
     font-size: 0.9em;
     color: #ddd;
-=======
+}
 
 body {
   background-color: rgb(57, 99, 141);
 }
+
+
