@@ -289,10 +289,8 @@ html, body {
 }
 
 p {
-
   position: relative;
   z-index: 1;          
-  text-align: center;
 }
 
   /* Barra superior contra los bordes */
@@ -309,20 +307,25 @@ p {
 
 /* Contenedor principal autos */
 .contenedor {
-    max-width: 900px;
-    margin: 0 auto;
+   flex: 1;               /* todas ocupan mismo espacio */
+  min-width: 200px;      /* ancho min */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+  
 }
 
 /* Tarjetas */
 .tarjeta {
     display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.15);
+    flex-direction: row;  /* imagen + texto en fila */
+     text-align: justify;
+    justify-content: flex-start; /* arranca desde la izquierda */
+    background-color: rgba(141, 191, 224, 0.521);
+    transform: translateX(-50%);
     padding: 20px;
-    border-radius: 20px;
+    margin: 15px 0;
+    border-radius: 44px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
     transition: transform 0.2s ease-in-out;
     min-width: 500px;
@@ -336,35 +339,43 @@ p {
 
 /* Imagen */
 .tarjeta img {
-    width: 200px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 10px;
+   width: 400px;
+   height: auto;  
+    
 }
 
 /* Texto */
 .tarjeta h2 {
     margin: 0;
-    font-size: 1.5em;
-    color: #fff;
-    font-family: "Trebuchet MS", sans-serif;
+    font-size: 3em;
+    color: #ffffff;
+    font-family: "irish grover", sans-serif;
 }
 
-.tarjeta p {
-    margin: 5px 0;
-    font-size: 1em;
-    color: #e0e0e0;
+.descr {
+    margin: 10px 0;
+    font-size: 2em;
+    color: #ffffff;
+    font-family: "judson", sans-serif;
 }
 
 /* Precio */
-.precio {
+.precio  {
     font-weight: bold;
-    font-size: 1.2em;
-    color: #fff;
+    font-size: 1.5em;
+    color: #ffffff;
+    font-family: "inter", sans-serif;
 }
 
 /* Vendidos */
 .vendidos {
-    font-size: 0.9em;
-    color: #ddd;
+    font-size: 1,4em;
+    color: #ffffff;
+    font-family: "inter", sans-serif;
+font-weight: semi bold;
 }
+
+body {
+  background-color: rgb(57, 99, 141);
+}
+

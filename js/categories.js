@@ -35,8 +35,9 @@ function sortCategories(criteria, array){
     return result;
 }
 
-//Funcion que nos lleva a la lista por categoria de producto
-//Hay que crear los demas html de categorias y productos
+
+//Funcion que nos lleva al producto por categoría
+//Hay que crear los demas html por producto
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "cart.html"
