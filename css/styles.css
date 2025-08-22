@@ -243,7 +243,7 @@ h3 {
   background-color: #E8F5F4;    /* celestito */
   box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
   transition: all 0.3s ease;    /* animación suave */
-    position: relative;
+  position: relative;
   z-index: 1;                     /* botón arriba de la mano */
   }
 
@@ -294,6 +294,7 @@ p {
   z-index: 1;          
   text-align: center;
 }
+
 /* Contenedor principal autos */
 .contenedor {
     max-width: 900px;
@@ -351,4 +352,8 @@ p {
 .vendidos {
     font-size: 0.9em;
     color: #ddd;
+=======
+
+body {
+  background-color: rgb(57, 99, 141);
 }
