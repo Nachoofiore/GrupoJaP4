@@ -294,3 +294,7 @@ p {
   z-index: 1;          
   text-align: center;
 }
+
+body {
+  background-color: rgb(57, 99, 141);
+}
