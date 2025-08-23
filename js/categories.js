@@ -40,7 +40,7 @@ function sortCategories(criteria, array){
 //Hay que crear los demas html por producto
 function setCatID(id) {
     localStorage.setItem("catID", id);
-    window.location = "cart.html"
+    window.location = "products.html"
 }
 
 function showCategoriesList(){
