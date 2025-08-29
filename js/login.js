@@ -1,17 +1,3 @@
-
-document.getElementById("btnIngresar").addEventListener("click", function () {
-    let usuario = document.getElementById("usuario").value.trim();
-    let contrasena = document.getElementById("contrasena").value.trim();
-
-    if (usuario === "" || contrasena === "") {
-        alert("Por favor complete todos los campos.");
-    } else {
-        localStorage.setItem("usuario", usuario);
-        window.location.href = "index.html";
-    }
-}); 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const btnIngresar = document.getElementById("btnIngresar");
 
@@ -27,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Guardar usuario en localStorage
     localStorage.setItem("usuario", usuario);
 
-    // Redirigir a otra página
+    // Redirigir al index
     window.location.href = "index.html";
   });
-
 });
