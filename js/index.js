@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-    const profileDropdownToggle = document.getElementById("profileDropdown");
+  const profileDropdownToggle = document.getElementById("profileDropdown");
   const storedUsername = localStorage.getItem("username");
 
   // Verificar si el usuario ha iniciado sesión
