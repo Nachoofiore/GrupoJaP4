@@ -1,76 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
-
-
 <head>
+  <meta charset="UTF-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluginama</title>
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: rgb(57, 99, 141);
-      overflow: hidden; /* evita scroll */
-  }
-
-    .login-box {
-      max-width: 400px;
-      margin: 80px auto;
-      padding: 20px;
-      background: rgb(57, 99, 141);
-      border-radius: 20px;
-      box-shadow: 0 0 0px rgb(57, 99, 141);
-      opacity: 1;
-      box-shadow: 0 0 0px rgba(0,0,0,0.1);
-    }
-    
-  </style>
+  <link href="css/login.css" rel="stylesheet">
 </head>
 
-
-
 <body>
-  <img src="img/noto_palm-up-hand.png" class="hand" alt="mano">
-  <main class="mt-5">
+  <main class="d-flex align-items-center justify-content-center vh-100 ">
     <div class="container">
-      <div class="login-box">
-        <div class="text-center mb-4">
-  <video class="logo-video" src="img/LOGOLOGINNNN (1).mp4" autoplay muted loop></video>
-</div>
-        <h3 class="text-center mb-4">iniciar sesión</h3>
-        <div class="mb-3">
-          <label for="usuario" class="form-label"></label>
-          <input type="text" id="usuario" class="form-control" placeholder="Usuario">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-5 col-lg-6 col-xl-5">
+          <div class="card shadow-lg p-4">
+            <div class="text-center mb-4">
+              <video class="logo-video w-100" src="img/logo.mp4" autoplay muted loop></video>
+            </div>
+            <h3 class="text-center mb-4">Iniciar sesión</h3>
+            <div class="mb-3">
+              <label for="usuario" class="form-label visually-hidden">Usuario</label>
+              <input type="text" id="usuario" class="form-control" placeholder="Usuario">
+            </div>
+            <div class="mb-3">
+              <label for="contrasena" class="form-label visually-hidden">Contraseña</label>
+              <input type="password" id="contrasena" class="form-control" placeholder="Contraseña">
+            </div>
+            <button id="btnIngresar" class="btn btn-primary w-100">Ingresar</button>
+            <div class="text-center mt-3">
+              <p><a href="https://mi.iduruguay.gub.uy/contraseña/restablecer" target="_blank">¿Olvidaste tu contraseña?</a></p>
+              <p>No tengo cuenta, <a href="https://mi.iduruguay.gub.uy/registro" target="_blank">Registrarme</a></p>
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="contrasena" class="form-label"></label>
-          <input type="password" id="contrasena" class="form-control" placeholder="Contraseña">
-        </div>
- <button id="btnIngresar" class="btn btn-primary w-100">Ingresar</button>
-        <br>
-        <br>
-      <p>  <a href="https://mi.iduruguay.gub.uy/contraseña/restablecer" target="_blank">¿Olvidaste tu contraseña?</a></p>
-      <br>
-      <br>
-        <p>No tengo cuenta, <a href="https://mi.iduruguay.gub.uy/registro" target="_blank">Registrarme</a></p>
       </div>
-</div>
-
     </div>
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
   <script src="js/login.js"></script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+body{
+    background: url('../img/FondoSoluginama.png') no-repeat fixed;
+    background-size: cover;
+}
+h5, p, a{
+    font-family: "irish grover", sans-serif;
+}
+.navbar-nav .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.navbar-brand{
+  width: 60%;
+  font-weight: bold;
+}
+
+main {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-img-top {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e9ecef;
+}
