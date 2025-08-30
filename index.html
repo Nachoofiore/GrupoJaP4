@@ -47,8 +47,6 @@
       </div>
     </div>
   </nav>
-
-  <!-- Contenido principal -->
   <main>
     <div class="jumbotron text-center"></div>
     <div class="album py-5 bg-light">
@@ -96,33 +94,12 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
-
-  <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const loginNav = document.getElementById("loginNav");
-      const userNav = document.getElementById("userNav");
-      const usuario = localStorage.getItem("usuario");
-      const logoutBtn = document.getElementById("logoutBtn");
-
-      if (usuario) {
-        loginNav.classList.add("d-none");        // Oculta "Iniciar Sesión"
-        userNav.classList.remove("d-none");      // Muestra nombre de usuario
-        userNav.querySelector("a").textContent = usuario;
-      }
-
-      // Función para cerrar sesión
-      logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("usuario");
-        location.reload(); // Recarga la página para mostrar "Iniciar Sesión"
-      });
-    });
-  </script>
+  <script src="js/index.js"></script>
+  <script src="js/init.js"></script>
 </body>
 
 </html>
