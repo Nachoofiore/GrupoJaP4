@@ -1,3 +1,17 @@
+<<<<<<< Updated upstream
+=======
+document.getElementById("btnIngresar").addEventListener("click", function (){
+    let usuario = document.getElementById("usuario").value.trim();
+    let contrasena = document.getElementById("contrasena").value.trim();
+
+    if (usuario === "" || contrasena === "") {
+        alert("Por favor complete todos los campos.");
+    } else {
+        localStorage.setItem("usuario", usuario);
+        window.location.href = "index.html";
+    }
+});
+>>>>>>> Stashed changes
 document.addEventListener("DOMContentLoaded", () => {
   const btnIngresar = document.getElementById("btnIngresar");
   const usuarioInput = document.getElementById("usuario");
