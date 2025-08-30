@@ -24,4 +24,25 @@ document.addEventListener("DOMContentLoaded", function() {
     // Redirigir al index
     window.location.href = "index.html";
   });
+
+  function mostrarError(mensaje) {
+    if (errorMsg) {
+      errorMsg.textContent = mensaje;
+      errorMsg.style.display = "block";
+    } else {
+      alert(mensaje);
+    }
+  }
+
+  // Ocultar mensaje de error al empezar a escribir
+  if (usuarioInput && contrasenaInput && errorMsg) {
+    usuarioInput.addEventListener("input", ocultarError);
+    contrasenaInput.addEventListener("input", ocultarError);
+  }
+
+  function ocultarError() {
+    if (errorMsg) {
+      errorMsg.style.display = "none";
+    }
+  }
 });
