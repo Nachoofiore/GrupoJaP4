@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
       mostrarError("La contraseña debe tener al menos 6 caracteres.");
       return;
     }
-     // 🔑 Guardar en localStorage con la misma clave que usa index.js
+     // Guardar en localStorage con la misma clave que usa index.js
     localStorage.setItem("username", usuario);
 
     // Redirigir al index

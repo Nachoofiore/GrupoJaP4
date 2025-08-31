@@ -2,7 +2,6 @@
    ESTILOS GENERALES DEL SITIO
    =========================== */
 
-/* Tipografía común */
 body{
   margin: 0;
   padding: 0;
@@ -38,8 +37,8 @@ body{
   top: 0;
   z-index: 100;
 }
-
-.navbar-brand{
+/* Titulo soluginama */
+.navbar-brand{ 
   width: 60%;
   font-weight: bold;
 }

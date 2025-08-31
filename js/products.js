@@ -1,20 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
   const productContainer = document.getElementById("product-container");
-  const spinnerWrapper = document.getElementById("spinner-wrapper");
   const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
-  // --- CÓDIGO NUEVO PARA LA BARRA DE NAVEGACIÓN ---
+
   const profileDropdownToggle = document.getElementById("profileDropdown");
   const storedUsername = localStorage.getItem("username");
+    //Cerrar sesion
+  document.querySelector(".Exit").addEventListener("click", function(event) {
+    // Borrar solo el username del localStorage
+    localStorage.removeItem("username");
+
+    // Redirigir a login.html
+    window.location.href = "login.html";
+});
 
   if (storedUsername) {
     profileDropdownToggle.textContent = storedUsername;
   }
-  // --- FIN CÓDIGO NUEVO ---
-
-  // Muestra el spinner al inicio de la carga
-  spinnerWrapper.style.display = 'flex';
-
+ 
   fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -47,8 +50,4 @@ document.addEventListener("DOMContentLoaded", function() {
       console.error('Error al cargar los productos:', error);
       productContainer.innerHTML = `<p class="text-danger text-center">No se pudieron cargar los productos. Por favor, intente de nuevo más tarde.</p>`;
     })
-    .finally(() => {
-      // Oculta el spinner una vez que la carga finaliza
-      spinnerWrapper.style.display = 'none';
-    });
 });
