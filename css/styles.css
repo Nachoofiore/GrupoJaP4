@@ -1,379 +1,68 @@
-.jumbotron,
-.card-body,
-.container,
-.site-header {
-  font-family: 'Verdana', serif !important;
-}
+/* ===========================
+   ESTILOS GENERALES DEL SITIO
+   =========================== */
 
-.jumbotron .display-4 {
-  font-weight: bold;
-}
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:"irish grover", sans-serif;
 
-nav a {
-  text-decoration: none;
-}
-
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
 }
 
 .jumbotron {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
+  background-color: #81C3D7;
   background: url('../img/cover_back.png');
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-size: auto;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: black;
+  color: rgb(0, 0, 0);
   font-weight: bold;
 }
 
-@media (min-width: 768px) {
-  .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-}
-
-.jumbotron p:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron-heading {
-  font-weight: 300;
-}
-
-.jumbotron .container {
-  max-width: 40rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  text-shadow: 1px 1px 2px grey;
-}
-
-.jumbotron .lead {
-  font-size: 38px;
-}
-
-footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-footer p {
-  margin-bottom: .25rem;
-}
-
-.site-header a {
-  color: white;
-  transition: ease-in-out color .15s;
-}
-
-.site-header .dropdown-menu a {
-  color: black;
-}
-
-.dropzone {
-  border: 2px dashed #0087F7;
-  border-radius: 5px;
-  background: white;
-}
-
-.img-fit {
-  max-height: 100%;
-}
-
-.alert {
-  position: fixed;
-  top: 80px;
-  width: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 64px;
-  height: 64px;
-  top: 50%;
-  left: 50%;
-}
-
-.cursor-active {
-  cursor: pointer;
-}
-
-.left {
-  float: left;
-  padding: 4px;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 51px;
-  height: 51px;
-  margin: 6px;
-  border: 6px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
-}
-
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.signin {
+/* Encabezado / Navbar */
+.navbar {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
   width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-
-#spinner-wrapper {
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: sticky;
   top: 0;
-  left: 0;
-  z-index: 1021;
-  display: none;
+  z-index: 100;
+}
+/* Titulo soluginama */
+.navbar-brand{ 
+  width: 60%;
+  font-weight: bold;
 }
 
-main {
-  min-height: calc(100vh - 210px);
-}
-
-a.custom-card,
-a.custom-card:hover {
+/* Links generales */
+a {
+  text-decoration: none;
   color: inherit;
-  text-decoration: inherit;
 }
 
-.checked {
-  color: orange;
-}
-
-.form-control {
-  border: 15px;
-  padding: 15px;
-  background-color: aliceblue;
-  margin-bottom: 25px;
-  outline:#aaadae;
-}
-
+/* Botones base */
 .btn {
   border: 0;
   padding: 15px;
   margin-top: 25px;
-  font-size: 16px;
-  width: 250px;
-  font-size: 27px;
-  font-family:  'alike', serif;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
 }
 
-h3 {
-  position: relative;
-  color: black;
-  font-family: 'Inter', sans-serif;
-  font-size: 32px;  
-  font-weight: 800;
-  text-transform: uppercase;
-  text-align: center;
+footer{
+  background-color: #ffffff;
 }
-#usuario {
-  position: relative;
-  border-radius: 2000px;
-  color:#000000;
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;  
-  font-weight:200;
-  padding-left: 55px;
-  background: url(../img/useruser.jpg)  no-repeat 10px center;
-  background-size: 33px;
-  background-color: #E8F5F4;    /* celestito */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
-  transition: all 0.3s ease;    /* animación suave */
-  
-}
-#contrasena {
-  color:#000000;
-  border-radius: 100px;
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;  
-  font-weight:200;
-  padding-left: 55px;
-  background:url(../img/candadologin.png)  no-repeat 10px center;
-  background-size: 28px;
-  background-color: #E8F5F4;    /* celestito */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* sombra gris */
-  transition: all 0.3s ease;    /* animación suave */
-  position: relative;
-  z-index: 1;                     /* botón arriba de la mano */
-  }
-
-.logo-video {
-  background-color: rgb(57, 99, 141);
-  position: relative;
-  width: 310px;
-  height: auto;
-  display: block;
-  border-radius: 2000px;
- margin: -70px auto 8px;  /* 👈 el primer valor (top) lo sube */
-}
-
-#btnIngresar {
-  position: relative;
-  border-radius: 2000px;
-  font-family: "alike", sans-serif;
-  font-size: 44px;
-  font-weight: 400;           
-  color:rgb(250, 245, 245);
-  font-family:"alike", sans-serif;
-  font-size: 44px;  
-  font-weight: 400;
-  z-index: 1;                     /* botón arriba de la mano */
-}
-
-.hand {
-  position: fixed;
-  left: 50%;                         /* centrada horizontal */
-  bottom: 0;                         /* nace desde abajo */
-  transform: translateX(-50%) rotate(0deg); 
-  width: 1050px;                      /* ajustá tamaño según lo necesites */
-  height: auto;
-  z-index: 0;                        /* por detrás del botón */
-  pointer-events: none;              /* no bloquea clicks */
-}
-
-html, body {
-  margin: 0;       /* quita márgenes por defecto */
-  padding: 0;
-  height: 100%;    /* asegura que ocupen todo */
-
-}
-
-p {
-  position: relative;
-  z-index: 1;          
-}
-
-  /* Barra superior contra los bordes */
-        .navbar {
-            background: linear-gradient(135deg, #889499, #1a2530);
-            color: white;
-            padding: 1rem 2rem;
-            width: 100%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-/* Contenedor principal autos */
-.contenedor {
-    flex: 1;               /* todas ocupan mismo espacio */
-    min-width: 100px;     /* ancho min */
-    max-width: 2000px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Tarjetas */
-.tarjeta {
-    display: flex;
-    flex-direction: row;  /* imagen + texto en fila */
-    text-align: justify;
-    justify-content: left;
-    background-color: rgba(141, 191, 224, 0.521);
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 44px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease-in-out;
-    min-height: 360px;
-    max-height: 370px;
-}
-
-.tarjeta:hover {
-    transform: scale(1.02);
-}
-
-/* Imagen */
-.tarjeta img {
-   width: 400px;
-   height: auto;  
-    
-}
-
-/* Texto */
-.tarjeta h2 {
-    margin: 0;
-    font-size: 3em;
-    color: #ffffff;
-    font-family: "irish grover", sans-serif;
-}
-
-.descr {
-    margin: 10px 0;
-    font-size: 2em;
-    color: #ffffff;
-    font-family: "judson", sans-serif;
-}
-
-/* Precio */
-.precio  {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: #ffffff;
-    font-family: "inter", sans-serif;
-}
-
-/* Vendidos */
-.vendidos {
-    font-size: 1,4em;
-    color: #ffffff;
-    font-family: "inter", sans-serif;
-font-weight: semi bold;
-}
-
-body {
-  background-color: rgb(57, 99, 141);
-}
-

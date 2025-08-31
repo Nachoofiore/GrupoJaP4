@@ -2,34 +2,24 @@
 <html lang="es">
 
 <head>
+  <meta charset="UTF-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluginama</title>
 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/products.css" rel="stylesheet">
 </head>
 
 <body>
-  <style>
-      body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #3d628b; /* Fondo azul */
-    color: #fff;
-    margin: 0;
-    padding: 20px;
-    }
-
-  </style>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.html">Soluginama</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -43,37 +33,33 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDropdown">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item Exit" href="login.html">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <!-- Contenido principal -->
-  <div class="contenedor">
-    <!-- Título de la categoría -->
-    <h1 class="categoria-titulo" id="categoriaNombre">Productos de Autos</h1>
-    
-    <!-- Contenedor para los productos (se llenará con JavaScript) -->
-    <div class="productos-grid" id="contenedorProductos">
-      <!-- Mensaje de carga inicial -->
-      <div class="cargando">Cargando productos...</div>
-    </div>
-  </div>
-<main class="pb-5 container">
-    <div id="product-container" class="contenedor">
-      <!-- Aquí se cargarán los productos con JS -->
-    </div>
+
+  <main class="py-5 container">
+    <div id="product-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      </div>
   </main>
 
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
+  <footer class="text-center py-0">
+    <div class="container text-center">
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -86,5 +72,4 @@
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
 </body>
-
 </html>

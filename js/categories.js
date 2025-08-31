@@ -6,6 +6,22 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+const profileDropdownToggle = document.getElementById("profileDropdown");
+  const storedUsername = localStorage.getItem("username");
+    //Cerrar sesion
+document.querySelector(".Exit").addEventListener("click", function(event) {
+    // Borrar solo el username del localStorage
+    localStorage.removeItem("username");
+
+    // Redirigir a login.html
+    window.location.href = "login.html";
+});
+
+  if (storedUsername) {
+    profileDropdownToggle.textContent = storedUsername;
+  }
+
+
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)

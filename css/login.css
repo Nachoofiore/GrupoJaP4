@@ -1,0 +1,42 @@
+/* login.css */
+body {
+  font-family:"irish grover", sans-serif;
+  height: 100%;
+  display: flex; /* Permite usar flexbox para centrar el contenido */
+  flex-direction: column; /* Organiza los elementos en columna */
+  overflow: hidden;
+  background: url('../img/FondoSoluginama.png') no-repeat fixed;
+  background-size: cover;
+}
+
+
+.logo-video {
+  border-radius: 1rem;
+  max-width: 200px;
+}
+h3 {
+  font-weight: bold;
+  color: #343a40;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,16 @@
+body{
+    background: url('../img/FondoSoluginama.png') no-repeat fixed;
+    background-size: cover;
+    font-family: "irish grover", sans-serif;
+}
+h1, .lead{
+    color: white;
+}
+.text{
+    background-color: white;
+    padding: 1.5rem;
+}
+.navbar-brand{
+  width: 60%;
+  font-weight: bold;
+}
