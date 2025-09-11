@@ -1,32 +1,39 @@
 document.addEventListener("DOMContentLoaded", function() {
   const productContainer = document.getElementById("product-container");
-  const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
+  // Recuperar el catID desde localStorage
+  const storedCatID = localStorage.getItem("catID");
+  // Si no existe, usar 101 como valor por defecto
+  const catID = storedCatID ? storedCatID : 101;
+
+  // Construir la URL dinámicamente
+  const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
   const profileDropdownToggle = document.getElementById("profileDropdown");
   const storedUsername = localStorage.getItem("username");
-    //Cerrar sesion
+
+  // Cerrar sesión
   document.querySelector(".Exit").addEventListener("click", function(event) {
-    // Borrar solo el username del localStorage
-    localStorage.removeItem("username");
+    localStorage.removeItem("username"); // Borrar usuario
+    window.location.href = "login.html"; // Redirigir
+  });
 
-    // Redirigir a login.html
-    window.location.href = "login.html";
-});
-
+  // Mostrar nombre en el dropdown si está guardado
   if (storedUsername) {
     profileDropdownToggle.textContent = storedUsername;
   }
- 
+
+  // Solicitud de productos
   fetch(url)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       return response.json();
     })
     .then(data => {
       const products = data.products;
+      productContainer.innerHTML = ""; // limpiar antes de mostrar
       products.forEach(product => {
         const productHtml = `
           <div class="col">
@@ -47,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     })
     .catch(error => {
-      console.error('Error al cargar los productos:', error);
+      console.error("Error al cargar los productos:", error);
       productContainer.innerHTML = `<p class="text-danger text-center">No se pudieron cargar los productos. Por favor, intente de nuevo más tarde.</p>`;
-    })
+    });
 });
