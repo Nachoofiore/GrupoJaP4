@@ -19,7 +19,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <a class="navbar-brand" href="index.html">Soluginama</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -34,13 +35,16 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               usuario
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
               <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item Exit" href="login.html">Cerrar sesión</a></li>
             </ul>
           </li>
@@ -50,13 +54,44 @@
   </nav>
 
   <main class="py-5 container">
-    <div id="product-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <!-- Controles de filtrado -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text">Mín $</span>
+          <input type="number" id="minPrice" class="form-control" placeholder="Precio mínimo">
+        </div>
       </div>
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text">Máx $</span>
+          <input type="number" id="maxPrice" class="form-control" placeholder="Precio máximo">
+        </div>
+      </div>
+      <div class="col-md-4 d-flex gap-2">
+        <button id="filterBtn" class="btn btn-primary">Filtrar</button>
+        <button id="clearFilterBtn" class="btn btn-secondary">Limpiar</button>
+      </div>
+    </div>
+
+    <!-- Controles de orden -->
+    <div class="row mb-4">
+      <div class="col d-flex gap-2">
+        <button id="sortAsc" class=".text-secondary-emphasis">Precio ↑</button>
+        <button id="sortDesc" class=".text-body-tertiary">Precio ↓</button>
+        <button id="sortRel" class=".text-body-secondary">Más vendidos</button>
+      </div>
+    </div>
+
+    <!-- Contenedor de productos -->
+    <div id="product-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    </div>
   </main>
 
   <footer class="text-center py-0">
     <div class="container text-center">
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a
+          Programar</a></p>
     </div>
   </footer>
 
@@ -72,4 +107,5 @@
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
 </body>
+
 </html>
