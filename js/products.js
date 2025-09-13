@@ -102,6 +102,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   searchInput.addEventListener("input", applySearch);
 
+  // === Punto 4: guardar ID y navegar al detalle ===
+document.addEventListener("click", (e) => {
+  const link = e.target.closest(".see-more");
+  if (!link) return;
+  e.preventDefault();
+
+  const productId = link.dataset.id;
+  localStorage.setItem("productID", String(productId));
+  window.location.href = link.getAttribute("href"); // "product-info.html"
+});
+
   // Cargar productos desde la API
   fetch(url)
     .then((res) => res.json())
