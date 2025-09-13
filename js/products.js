@@ -45,6 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
               <h5 class="card-title">${p.name}</h5>
               <p class="card-text">${p.description}</p>
               <p class="card-text"><strong>Precio:</strong> ${p.currency} ${p.cost}</p>
+                <a href="product-info.html" class="btn btn-primary see-more" data-id="${p.id}">
+              Ver detalle
+            </a>
             </div>
             <div class="card-footer d-flex justify-content-between">
               <small class="text-muted">Vendidos: ${p.soldCount}</small>
