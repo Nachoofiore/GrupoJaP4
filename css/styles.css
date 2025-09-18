@@ -69,6 +69,7 @@ footer{
 
 .gallery{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
 /* Galería: 1ª imagen grande, resto miniaturas */
 #p-images{
   display:grid;
