@@ -12,7 +12,7 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="csspi">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -37,19 +37,43 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <main class="container py-4" id="product-detail">
+  <h1 id="p-name" class="mb-3"></h1>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <section id="p-images" class="gallery"></section>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    <div class="col-lg-5">
+      <p id="p-description" class="mb-3"></p>
+      <p><strong>Categoría:</strong> <span id="p-category">—</span></p>
+      <p class="uvendidas"><strong>Vendidos:</strong> <span id="p-sold">0</span></p>
+      <a href="products.html" class="btn btn-outline-secondary mt-3">← Volver</a>
+    
     </div>
+    <!-- Bloque de valoración -->
+    <div class="rating-wrap">
+          <div class="rating">
+            <strong>Valoración del producto:</strong>
+            <span class="stars">★ ★ ★ ★ <span class="off">☆</span></span>
+          </div>
+        </div>
+        
+  </div>
+  <!-- Opiniones -->
+<section class="opiniones mt-4">
+  <div class="card-white">
+    <h3>Opiniones del producto :</h3>
+    <p class="subtle">Destacados :</p>
+    <ul>
+      <li><b>Usuario 1</b> · Comentario</li>
+      <li><b>Usuario 2</b> · Comentario</li>
+      <li><b>Usuario 3</b> · Comentario</li>
+      <li><b>Usuario 4</b> · Comentario</li>
+    </ul>
+  </div>
+</section>
+</main>
   </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
