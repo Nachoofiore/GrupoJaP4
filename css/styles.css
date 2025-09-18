@@ -118,3 +118,24 @@ body {
   margin-bottom: 20px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
+
+.uvendidas {
+  color: gray;
+  margin-top: 60%;
+  margin-left: 70%;
+}
+
+.col-lg-5 {
+  background-color: white;
+  border: 0 solid #ffffff;
+  padding: 5%;
+  margin: 1%;
+  width: 39%;
+  height: auto;
+  box-sizing: border-box;
+  border-radius: 5%;
+}
+ 
+.barradevaloracion {
+  width: 57%;
+}
