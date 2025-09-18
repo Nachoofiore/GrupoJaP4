@@ -146,3 +146,15 @@ body {
   margin: 12px 0 18px;
   color: #000;
 }
+/* Vendidos abajo a la derecha */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  min-height: 420px; /* altura pareja con la izquierda */
+}
+.sold-line {
+  margin-top: auto;
+  text-align: right;
+  color: #8fa1ad;
+  font-weight: 600;
+}
