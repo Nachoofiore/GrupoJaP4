@@ -139,3 +139,10 @@ body {
 .barradevaloracion {
   width: 57%;
 }
+/* Precio grande */
+.product-price {
+  font-size: 32px;
+  font-weight: 900;
+  margin: 12px 0 18px;
+  color: #000;
+}
