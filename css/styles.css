@@ -98,3 +98,23 @@ footer{
 @media (max-width: 992px){
   #p-images img:first-child{ height:300px; }
 }
+
+/* === Valoración y Opiniones === */
+.rating-wrap{margin-top:16px}
+.rating{
+  background:var(--card);
+  border-radius:999px;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:var(--shadow);
+}
+.stars{letter-spacing:3px;font-size:18px}
+.stars .off{opacity:.35}
+
+.opiniones{margin-top:24px}
+.opiniones .card-white{padding:20px}
+.opiniones h3{margin:0 0 10px}
+.opiniones ul{margin:10px 0 0 18px}
+.opiniones li{margin:6px 0}
