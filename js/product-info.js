@@ -1,39 +1,71 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const id = localStorage.getItem("productID");
-  if (!id) {
-    // Entraron directo sin seleccionar un producto
-    location.replace("products.html");
-    return;
-  }
+document.addEventListener("DOMContentLoaded", () => {
 
+      const id = localStorage.getItem("productID");
+      if (!id) {
+        // Entraron directo sin seleccionar un producto
+        location.replace("products.html");
+        return;
+      }
   const url = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("Error al cargar producto");
-    const p = await res.json();
+  // Elementos del DOM
+  const pName = document.getElementById("p-name");
+  const pDescription = document.getElementById("p-description");
+  const pCategory = document.getElementById("p-category");
+  const pSold = document.getElementById("p-sold");
+  const carrusel = document.getElementById("carrusel");
 
-    // Campos del punto 4
-    const el = (id) => document.getElementById(id);
+  // Función para crear carrusel con Bootstrap
+  function crearCarrusel(imagenes) {
+    if (!imagenes || imagenes.length === 0) return "";
 
-    el("p-name").textContent = p.name ?? "Sin nombre";
-    el("p-description").textContent = p.description ?? "—";
-    el("p-category").textContent = p.category ?? "—";
-    el("p-sold").textContent = p.soldCount ?? 0;
+    let indicadores = "";
+    let items = "";
 
-    const imgs = Array.isArray(p.images) ? p.images : [];
-    el("p-images").innerHTML = imgs.length
-      ? imgs.map(src => `<img src="${src}" alt="${p.name}">`).join("")
-      : "<em>Sin imágenes</em>";
+    imagenes.forEach((img, index) => {
+      indicadores += `
+        <button type="button" data-bs-target="#carouselProduct" data-bs-slide-to="${index}" 
+          class="${index === 0 ? "active" : ""}" aria-current="${index === 0 ? "true" : "false"}"></button>
+      `;
 
-  } catch (err) {
-    console.error(err);
-    const root = document.getElementById("product-detail");
-    root.innerHTML = `<div class="alert alert-danger">
-      No se pudo cargar el producto. <a class="alert-link" href="products.html">Volver</a>
-    </div>`;
+      items += `
+        <div class="carousel-item ${index === 0 ? "active" : ""}">
+          <img src="${img}" class="d-block w-100 rounded" alt="Imagen del producto ${index + 1}">
+        </div>
+      `;
+    });
+
+    return `
+      <div id="carouselProduct" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">${indicadores}</div>
+        <div class="carousel-inner">${items}</div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    `;
   }
+
+  // Cargar datos con fetch
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      pName.textContent = data.name;
+      pDescription.textContent = data.description;
+      pCategory.textContent = data.category;
+      pSold.textContent = data.soldCount;
+      carrusel.innerHTML = crearCarrusel(data.images);
+    })
+    .catch(error => {
+      console.error("Error al cargar el producto:", error);
+    });
 });
+
 // === Galería robusta: click en miniatura -> pasa a principal ===
 (function () {
   const gallery = document.getElementById("p-images");
