@@ -119,17 +119,12 @@ body {
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-.uvendidas {
-  color: gray;
-  margin-top: 60%;
-  margin-left: 70%;
-}
-
 .col-lg-5 {
   background-color: white;
   border: 0 solid #ffffff;
   padding: 5%;
   margin: 1%;
+  margin-top: 2%;
   width: 39%;
   height: auto;
   box-sizing: border-box;
@@ -160,5 +155,5 @@ body {
 }
 
 .btnvolver {
-  margin-left: 80%;
+  margin-left: 90%;
 }
