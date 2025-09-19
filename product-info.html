@@ -38,28 +38,38 @@
   </nav>
   <main>
     <main class="container py-4" id="product-detail">
-  <h1 id="p-name" class="mb-3"></h1>
-
-  <div id="carrusel"class="mx-auto" style="max-width: 600px;">
  
-  </div>
-    <div class="col-lg-5 card-white hero-right">
- 
-  <div class="category-line">Categoría: <span id="p-category"></span></div>
 
-  <div id="p-price" class="product-price">$ PRECIO</div>
+  <!-- Fila con dos columnas -->
+<div class="row g-4 align-items-start product-hero">
 
-  <div class="desc">
-    <h4>Descripción:</h4>
-    <ul id="p-description">
-  
-    </ul>
+  <!-- IZQUIERDA: carrusel dentro de una tarjeta -->
+  <div class="col-lg-7 card-white">
+    <!-- IMPORTANTE: sacamos mx-auto y el max-width inline -->
+    <div id="carrusel" class="carrusel slide">
+      <!-- … pegue aquí el mismo contenido del carrusel que ya tenías … -->
+    </div>
   </div>
 
-  <p class="sold-line"><strong>Unidades vendidas:</strong> <span id="p-sold">0</span></p>
+  <!-- DERECHA: detalles dentro de tarjeta -->
+  <div class="col-lg-5 card-white hero-right">
+     <h1 id="p-name" class="mb-3"></h1>
+    <div class="category-line">Categoría: <span id="p-category"></span></div>
+
+    <div id="p-price" class="product-price">$ PRECIO</div>
+
+    <div class="desc">
+      <h4>Descripción:</h4>
+      <!-- si usás <ul>, dejalo; si es texto, usá <p> -->
+      <ul id="p-description"></ul>
+    </div>
+
+    <p class="sold-line"><strong>Unidades vendidas:</strong> <span id="p-sold">0</span></p>
+  </div>
+
 </div>
     </div>
-     <a href="products.html" class="btn btn-lg btn-primary btnvolver">← Volver</a>
+     <a href="products.html" class="btn btn-outline-secondary mt-3">← Volver</a>
      <!-- Contenedor 3: Valoración -->
   <div class="card-white barradevaloracion">
     <div class="rating-wrap">
