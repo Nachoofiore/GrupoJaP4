@@ -157,3 +157,9 @@ body {
 .btnvolver {
   margin-left: 90%;
 }
+/* Contenedor que alinea valoración y botón en la misma línea */
+.rating-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
