@@ -66,8 +66,19 @@ a {
 footer{
   background-color: #ffffff;
 }
+body {
+  background-image: 
+    url(../img/FondoSoluginama.png);
 
+  background-size: cover;       
+  background-position: center;  
+  background-attachment: fixed; 
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
 .gallery{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+
 .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
 /* Galería: 1ª imagen grande, resto miniaturas */
 #p-images{
@@ -99,22 +110,56 @@ footer{
   #p-images img:first-child{ height:300px; }
 }
 
-/* === Valoración y Opiniones === */
-.rating-wrap{margin-top:16px}
-.rating{
-  background:var(--card);
-  border-radius:999px;
-  padding:12px 16px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  box-shadow:var(--shadow);
+/* Contenedores blancos (tarjetas) */
+.card-white {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
-.stars{letter-spacing:3px;font-size:18px}
-.stars .off{opacity:.35}
 
-.opiniones{margin-top:24px}
-.opiniones .card-white{padding:20px}
-.opiniones h3{margin:0 0 10px}
-.opiniones ul{margin:10px 0 0 18px}
-.opiniones li{margin:6px 0}
+.col-lg-5 {
+  background-color: white;
+  border: 0 solid #ffffff;
+  padding: 5%;
+  margin: 1%;
+  margin-top: 2%;
+  width: 39%;
+  height: auto;
+  box-sizing: border-box;
+  border-radius: 5%;
+}
+ 
+.barradevaloracion {
+  width: 57%;
+}
+/* Precio grande */
+.product-price {
+  font-size: 32px;
+  font-weight: 900;
+  margin: 12px 0 18px;
+  color: #000;
+}
+/* Vendidos abajo a la derecha */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  min-height: 420px; /* altura pareja con la izquierda */
+}
+.sold-line {
+  margin-top: auto;
+  text-align: right;
+  color: #8fa1ad;
+  font-weight: 600;
+}
+
+.btnvolver {
+  margin-left: 90%;
+}
+/* Contenedor que alinea valoración y botón en la misma línea */
+.rating-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

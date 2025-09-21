@@ -38,33 +38,51 @@
   </nav>
   <main>
     <main class="container py-4" id="product-detail">
-  <h1 id="p-name" class="mb-3"></h1>
+ 
 
-  <div class="row g-4">
-    <div class="col-lg-7">
-      <section id="p-images" class="gallery"></section>
+  <!-- Fila con dos columnas -->
+<div class="row g-4 align-items-start product-hero">
+
+  <!-- IZQUIERDA: carrusel dentro de una tarjeta -->
+  <div class="col-lg-7 card-white">
+    <!-- IMPORTANTE: sacamos mx-auto y el max-width inline -->
+    <div id="carrusel" class="carrusel slide" >
+
+      <!-- … pegue aquí el mismo contenido del carrusel que ya tenías … -->
     </div>
-    <div class="col-lg-5">
-      <p id="p-description" class="mb-3"></p>
-      <p><strong>Categoría:</strong> <span id="p-category">—</span></p>
-      <p class="uvendidas"><strong>Vendidos:</strong> <span id="p-sold">0</span></p>
-      <a href="products.html" class="btn btn-outline-secondary mt-3">← Volver</a>
-    
-    </div>
-    <!-- Bloque de valoración -->
-    <div class="rating-wrap">
-          <div class="rating">
-            <strong>Valoración del producto:</strong>
-            <span class="stars">★ ★ ★ ★ <span class="off">☆</span></span>
-          </div>
-        </div>
-        
   </div>
-  <!-- Opiniones -->
-<section class="opiniones mt-4">
+
+  <!-- DERECHA: detalles dentro de tarjeta -->
+  <div class="col-lg-5 card-white hero-right">
+     <h1 id="p-name" class="mb-3"></h1>
+    <div class="category-line">Categoría: <span id="p-category"></span></div>
+
+    <div id="p-price" class="product-price">$ PRECIO</div>
+
+    <div class="desc">
+      <h4>Descripción:</h4>
+      <!-- si usás <ul>, dejalo; si es texto, usá <p> -->
+      <ul id="p-description"></ul>
+    </div>
+
+    <p class="sold-line"><strong>Unidades vendidas:</strong> <span id="p-sold">0</span></p>
+  </div>
+
+</div>
+    </div>
+ <!-- Contenedor 3: Valoración + Volver -->
+<div class="card-white rating-bar">
+  <div class="rating-wrap">
+    <strong>Valoración del producto:</strong>
+    <span class="stars">★ ★ ★ ★ ☆</span>
+  </div>
+  <a href="products.html" class="btn btn-primary back-btn">← Volver</a>
+</div>
+
+  <!-- Contenedor 4: Opiniones -->
   <div class="card-white">
-    <h3>Opiniones del producto :</h3>
-    <p class="subtle">Destacados :</p>
+    <h3>Opiniones del producto:</h3>
+    <p class="subtle">Destacados:</p>
     <ul>
       <li><b>Usuario 1</b> · Comentario</li>
       <li><b>Usuario 2</b> · Comentario</li>
@@ -72,7 +90,6 @@
       <li><b>Usuario 4</b> · Comentario</li>
     </ul>
   </div>
-</section>
 </main>
   </footer>
   <div id="spinner-wrapper">
