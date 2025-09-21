@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pCategory = document.getElementById("p-category");
   const pSold = document.getElementById("p-sold");
   const carrusel = document.getElementById("carrusel");
+  const pPrice = document.getElementById("p-price");
 
   // Función para crear carrusel con Bootstrap
   function crearCarrusel(imagenes) {
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       pDescription.textContent = data.description;
       pCategory.textContent = data.category;
       pSold.textContent = data.soldCount;
+      pPrice.textContent = `${data.currency} ${data.cost}`;
       carrusel.innerHTML = crearCarrusel(data.images);
     })
     .catch(error => {
