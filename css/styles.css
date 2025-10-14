@@ -6,7 +6,7 @@ body{
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family:"irish grover", sans-serif;
+  font-family: 'Inter', sans-serif;
 
 }
 
@@ -45,6 +45,7 @@ body{
 
 /* Links generales */
 a {
+  font-family: "irish grover", sans-serif;
   text-decoration: none;
   color: inherit;
 }
