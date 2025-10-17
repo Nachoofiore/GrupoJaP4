@@ -203,3 +203,23 @@ body.dark-mode .btn-save {
     height: 80px;
   }
 }
+.header-perfil {
+  margin-top: 1.5rem;
+}
+
+.header-perfil h2 {
+  font-family: 'Irish Grover', cursive;
+  font-size: 2rem;
+}
+
+.ajustes-icono {
+  font-size: 1.6rem;
+  color: #444;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.ajustes-icono:hover {
+  transform: rotate(20deg);
+  color: #000;
+}
