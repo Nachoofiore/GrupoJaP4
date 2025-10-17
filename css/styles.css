@@ -255,7 +255,7 @@ body.modo-oscuro .btn {
 
 /* Cuando está activado */
 input:checked + .slider {
-  background-color: #4caf50;
+  background-color: #8931ee;
 }
 
 input:checked + .slider::before {
