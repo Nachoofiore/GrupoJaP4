@@ -164,3 +164,7 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+body.oscuro {
+  background-color: #121212;
+  color: #e0e0e0;
+}

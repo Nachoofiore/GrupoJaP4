@@ -37,3 +37,14 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+const boton = document.getElementById("modo-toggle");
+
+boton.addEventListener("click", () => {
+  document.body.classList.toggle("oscuro");
+
+  if (document.body.classList.contains("oscuro")) {
+    boton.textContent = "☀️ Modo Claro";
+  } else {
+    boton.textContent = "🌙 Modo Oscuro";
+  }
+});
