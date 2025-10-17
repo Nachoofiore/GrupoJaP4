@@ -37,14 +37,66 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
-const boton = document.getElementById("modo-toggle");
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("modo-toggle");
 
-boton.addEventListener("click", () => {
-  document.body.classList.toggle("oscuro");
-
-  if (document.body.classList.contains("oscuro")) {
-    boton.textContent = "☀️ Modo Claro";
-  } else {
-    boton.textContent = "🌙 Modo Oscuro";
+  // Ver si el usuario tenía guardado el modo
+  const modoActual = localStorage.getItem("modo") || "claro";
+  if (modoActual === "oscuro") {
+    activarModoOscuro();
+    toggle.checked = true;
   }
+
+  // Escuchar el cambio del switch
+  toggle.addEventListener("change", () => {
+    if (toggle.checked) {
+      activarModoOscuro();
+      localStorage.setItem("modo", "oscuro");
+    } else {
+      desactivarModoOscuro();
+      localStorage.setItem("modo", "claro");
+    }
+  });
 });
+
+// Funciones para aplicar estilos
+function activarModoOscuro() {
+  document.body.classList.add("modo-oscuro");
+
+  // Cambiar Bootstrap navbar
+  const navbar = document.querySelector(".navbar");
+  if (navbar) {
+    navbar.classList.remove("navbar-light", "bg-light");
+    navbar.classList.add("navbar-dark", "bg-dark");
+  }
+
+  // Cambiar color de cards
+  document.querySelectorAll(".card").forEach(card => {
+    card.classList.add("bg-dark", "text-white");
+  });
+
+  // Cambiar color de botones
+  document.querySelectorAll(".btn").forEach(btn => {
+    btn.classList.add("btn-outline-light");
+    btn.classList.remove("btn-outline-dark");
+  });
+}
+
+function desactivarModoOscuro() {
+  document.body.classList.remove("modo-oscuro");
+
+  const navbar = document.querySelector(".navbar");
+  if (navbar) {
+    navbar.classList.remove("navbar-dark", "bg-dark");
+    navbar.classList.add("navbar-light", "bg-light");
+  }
+
+  document.querySelectorAll(".card").forEach(card => {
+    card.classList.remove("bg-dark", "text-white");
+  });
+
+  document.querySelectorAll(".btn").forEach(btn => {
+    btn.classList.remove("btn-outline-light");
+    btn.classList.add("btn-outline-dark");
+  });
+}

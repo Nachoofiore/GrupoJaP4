@@ -1,50 +1,3 @@
-body{
-    background: url('../img/FondoSoluginama.png') no-repeat fixed;
-    background-size: cover;
-}
-h5, p, a{
-    font-family: "irish grover", sans-serif;
-}
-.navbar-nav .dropdown-menu {
-    right: 0;
-    left: auto;
-}
-.navbar-brand{
-  width: 60%;
-  font-weight: bold;
-}
-
-main {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
-.card {
-    border: none;
-    border-radius: 0.75rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-}
-
-.card-img-top {
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
-    height: 200px;
-    object-fit: cover;
-}
-
-.card-title {
-    font-weight: bold;
-}
-
-.card-footer {
-    background-color: #ffffff;
-    border-top: 1px solid #e9ecef;
-}
 /* ======== COLORES ======== */
 body {
   background-color: #ffffff;
@@ -159,4 +112,15 @@ body.modo-oscuro .slider {
 
 body.modo-oscuro input:checked + .slider {
   background-color: #f9d71c;
+}
+body {
+  background-image: url("img/fondo-claro.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.3s ease, background-color 0.3s ease;
+}
+
+body.modo-oscuro {
+  background-image: url("img/fondo-oscuro.jpg");
 }
