@@ -13,7 +13,7 @@ body.modo-oscuro {
 body.modo-oscuro {
   background-image: url('../img/FondoSoluginama-dark.jpeg') !important;
   background-color: #121212;
-  color: #000000;
+  color: #ffffff;
 }
 /* Navbar */
 body.modo-oscuro .navbar {
