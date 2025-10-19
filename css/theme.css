@@ -85,7 +85,7 @@ body.modo-oscuro a:hover {
    Jumbotron modo oscuro con overlay degradado
 ========================= */
 body.modo-oscuro .jumbotron {
-  background: url('../img/cober_black.png') center/cover no-repeat;
+  background: url('../img/cover_black.png') center/cover no-repeat;
   color: #ffffff;
 }
 
