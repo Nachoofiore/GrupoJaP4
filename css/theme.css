@@ -1,0 +1,119 @@
+/* =========================
+   Transiciones suaves globales
+========================= */
+body,
+.container,
+.row,
+.card-white,
+.hero-right,
+.list-group,
+input,
+select,
+button,
+.navbar,
+footer,
+.jumbotron,
+.album,
+.album .col-md-4 {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, filter 0.3s;
+}
+
+/* =========================
+   Modo oscuro
+========================= */
+body.modo-oscuro {
+  background-image: url('../img/FondoSoluginama-dark.jpeg') !important;
+  background-color: #121212;
+  color: #000000;
+}
+body.modo-oscuro {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Containers y filas */
+body.modo-oscuro .container,
+body.modo-oscuro .row {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Cards y hero */
+body.modo-oscuro .card-white,
+body.modo-oscuro .hero-right {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border-color: #444;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* List-groups */
+body.modo-oscuro .list-group {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-color: #333;
+}
+
+/* Inputs, selects y botones */
+body.modo-oscuro input,
+body.modo-oscuro select,
+body.modo-oscuro button {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border-color: #444;
+}
+
+/* Navbar y footer */
+body.modo-oscuro .navbar {
+  background-color: #222;
+  color: #ffffff;
+}
+body.modo-oscuro footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Links modo oscuro */
+body.modo-oscuro a {
+  color: #66b0ff;
+}
+body.modo-oscuro a:hover {
+  color: #99ccff;
+}
+
+/* =========================
+   Jumbotron modo oscuro con overlay degradado
+========================= */
+body.modo-oscuro .jumbotron {
+  background: url('../img/cober_black.png') center/cover no-repeat;
+  color: #ffffff;
+}
+
+body.modo-oscuro .jumbotron::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+  pointer-events: none;
+}
+
+/* =========================
+   Album / Galería modo oscuro
+========================= */
+body.modo-oscuro .album {
+  background-color: #1e1e1e;
+}
+
+body.modo-oscuro .album .container {
+  background-color: transparent;
+  color: #000000;
+}
+
+body.modo-oscuro .album .col-md-4 {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #444;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  padding: 1rem;
+}

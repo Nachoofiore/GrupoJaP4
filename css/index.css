@@ -1,15 +1,20 @@
 /* ======== COLORES ======== */
 body {
-  background-color: #ffffff;
+  background-color: #fdfdfd;
   color: #000000;
   transition: background-color 0.3s, color 0.3s;
 }
 
 body.modo-oscuro {
   background-color: #121212;
-  color: #ffffff;
+  color: #000000;
 }
-
+/* Fondo modo oscuro */
+body.modo-oscuro {
+  background-image: url('../img/FondoSoluginama-dark.jpeg') !important;
+  background-color: #121212;
+  color: #000000;
+}
 /* Navbar */
 body.modo-oscuro .navbar {
   background-color: #222 !important;
