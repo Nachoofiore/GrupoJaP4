@@ -2,72 +2,78 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+  <link href="css/my-profile.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="css/theme.css" rel="stylesheet">
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light p-1">
+     <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeSwitch">
+          <span class="slider">
+    <span class="icon sun">☀️</span>
+    <span class="icon moon">🌙</span>
+  </span>
+      </div>
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.html">Soluginama</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+          <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              Usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- PERFIL -->
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="profile-card">
+     
+<div class="d-flex justify-content-between align-items-center mt-3 mb-3 px-3 header-perfil">
+  <h2 class="mb-0">Mi perfil</h2>
+  <i class="fa-solid fa-gear ajustes-icono"></i>
+</div>
+      <div class="profile-pic">
+        <img id="profileImage" src="img/default-profile.png" alt="Foto de perfil">
+        <label for="uploadPhoto" class="camera-icon">📷</label>
+        <input type="file" id="uploadPhoto" accept="image/*">
       </div>
+
+      <form id="profileForm" class="mt-3">
+        <input type="text" id="firstName" placeholder="Nombre" required>
+        <input type="text" id="lastName" placeholder="Apellido" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="Teléfono de contacto">
+        <button type="submit" class="btn-save">Guardar cambios</button>
+      </form>
     </div>
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
 </body>
-
 </html>

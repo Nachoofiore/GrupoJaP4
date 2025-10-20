@@ -65,7 +65,7 @@ a {
 }
 
 footer{
-  background-color: #ffffff;
+  background-color: #fff9f9;
 }
 body {
   background-image: 
@@ -163,4 +163,119 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+/* ======== COLORES ======== */
+body {
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.modo-oscuro {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Navbar */
+body.modo-oscuro .navbar {
+  background-color: #222 !important;
+}
+
+/* Cards */
+body.modo-oscuro .card {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* Botones */
+body.modo-oscuro .btn {
+  border-color: #f0f0f0;
+  color: #f0f0f0;
+}
+
+/* ======== TOGGLE ======== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 32px;
+  margin-left: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 32px;
+  transition: background-color 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 18px;
+}
+
+.icon {
+  position: absolute;
+  transition: opacity 0.3s ease;
+}
+
+.icon.sun {
+  left: 8px;
+  opacity: 1;
+}
+
+.icon.moon {
+  right: 8px;
+  opacity: 0;
+}
+
+/* El círculo que se mueve */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+/* Cuando está activado */
+input:checked + .slider {
+  background-color: #8931ee;
+}
+
+input:checked + .slider::before {
+  transform: translateX(28px);
+}
+
+/* Cambiar los íconos según el modo */
+input:checked + .slider .sun {
+  opacity: 0;
+}
+
+input:checked + .slider .moon {
+  opacity: 1;
+}
+
+/* Versión oscura */
+body.modo-oscuro .slider {
+  background-color: #555;
+}
+
+body.modo-oscuro input:checked + .slider {
+  background-color: #f9d71c;
 }
