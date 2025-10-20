@@ -223,3 +223,11 @@ body.dark-mode .btn-save {
   transform: rotate(20deg);
   color: #000;
 }
+/* ======== Fondo dinámico según modo ======== */
+/* Modo oscuro */
+body.dark-mode {
+  background-image: url('../img/FondoSoluginama-dark.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
