@@ -3,29 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>carrito</title>
-</head>
-<body>
-  
-</body>
-</html><!DOCTYPE html>
-<html lang="es">
+  <title>Soluginama - Carrito de compras</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Carrito - Soluginama</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900" rel="stylesheet">
+  <!-- Fuentes y estilos -->
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link href="css/index.css" rel="stylesheet">
+  <link href="css/cart.css" rel="stylesheet">
   <link href="css/theme.css" rel="stylesheet">
 </head>
 
-<body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+<body class="csspi">
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light p-1">
     <label class="switch">
       <input type="checkbox" id="modo-toggle">
       <span class="slider">
@@ -33,108 +22,47 @@
         <span class="icon moon">🌙</span>
       </span>
     </label>
+
     <div class="container">
       <a class="navbar-brand" href="index.html">Soluginama</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
           <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">Usuario</a>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item Exit" href="login.html">Cerrar sesión</a></li>
-            </ul>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <main class="container py-5">
-    <h1 class="mb-4">Mi Carrito</h1>
-    
-    <div id="cart-items" class="table-responsive">
-      <table class="table table-bordered align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody id="cart-body">
-          <!-- Aquí se agregan los productos con JS -->
-        </tbody>
-      </table>
-    </div>
+  <!-- MAIN -->
+  <main class="container my-5">
+    <div class="carrito-container card-white">
+      <h2 class="titulo">Carrito de compras</h2>
 
-    <div class="d-flex justify-content-between align-items-center mt-4">
-      <h3>Total: $<span id="cart-total">0</span></h3>
-      <button class="btn btn-success btn-lg" id="checkout-btn">Proceder al Pago</button>
+      <div id="cart-items" class="cart-items">
+        <!-- Productos se cargan dinámicamente -->
+      </div>
+
+      <hr>
+
+      <div class="total text-end">
+        <p><strong>Total:</strong> <span id="cart-total">$0</span></p>
+      </div>
+
+      <div class="botones">
+        <button class="seguir">Seguir comprando</button>
+        <button class="finalizar">Finalizar compra</button>
+      </div>
     </div>
   </main>
 
-  <footer class="text-center mt-5">
-    <div class="container">
-      <p class="float-end"><a href="#">Volver arriba</a></p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-
+  <!-- JS -->
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Ejemplo JS simple para carrito con localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    const cartBody = document.getElementById('cart-body');
-    const cartTotal = document.getElementById('cart-total');
-
-    function renderCart() {
-      cartBody.innerHTML = '';
-      let total = 0;
-
-      cart.forEach((item, index) => {
-        const subtotal = item.price * item.quantity;
-        total += subtotal;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${item.name}</td>
-          <td>$${item.price.toFixed(2)}</td>
-          <td>${item.quantity}</td>
-          <td>$${subtotal.toFixed(2)}</td>
-          <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Eliminar</button></td>
-        `;
-        cartBody.appendChild(row);
-      });
-
-      cartTotal.textContent = total.toFixed(2);
-    }
-
-    function removeItem(index) {
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-      if(cart.length === 0) {
-        alert('El carrito está vacío.');
-        return;
-      }
-      alert('¡Compra realizada con éxito!');
-      localStorage.removeItem('cart');
-      renderCart();
-    });
-
-    renderCart();
-  </script>
+  <script src="js/cart.js"></script>
 </body>
-
 </html>
