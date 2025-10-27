@@ -6,7 +6,7 @@ body{
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Irish Grover', cursive;
 
 }
 
@@ -76,7 +76,7 @@ body {
   background-attachment: fixed; 
   min-height: 100vh;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family:'Irish Grover', cursive;
 }
 .gallery{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 
