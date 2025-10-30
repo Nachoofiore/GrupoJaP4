@@ -258,5 +258,5 @@ function desactivarModoOscuro() {
 
 document.querySelector('.btn-comprar').addEventListener('click', function() {
   // Coloca aquí el código que quieres que se ejecute al hacer clic
-  alert('¡Producto agregado al carrito!');
+  alert('¡Se agregó el producto al carrito!');
 });
