@@ -71,3 +71,15 @@ document.querySelector(".finalizar").addEventListener("click", () => {
 });
 
 renderCart();
+// --- 5️⃣ Modo oscuro (persistente) ---
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    themeSwitch.checked = true;
+  }
+
+  themeSwitch.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode");
+    const theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+    localStorage.setItem("theme", theme);
+  });
+});
