@@ -279,3 +279,21 @@ body.modo-oscuro .slider {
 body.modo-oscuro input:checked + .slider {
   background-color: #f9d71c;
 }
+
+
+/* BOTON COMPRAR*/ 
+
+.btn-comprar {
+  font-size: 30px;
+  cursor: pointer; 
+  border-radius: 5px;
+}
+
+.btn-comprar:hover {
+  box-shadow: 3px 3px 6px #ffffff;
+}
+
+
+
+
+

@@ -253,3 +253,10 @@ function desactivarModoOscuro() {
     btn.classList.add("btn-outline-dark");
   });
 }
+
+// BOTON COMPRAR
+
+document.querySelector('.btn-comprar').addEventListener('click', function() {
+  // Coloca aquí el código que quieres que se ejecute al hacer clic
+  alert('¡Producto agregado al carrito!');
+});
