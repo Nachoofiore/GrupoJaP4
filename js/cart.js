@@ -1,5 +1,4 @@
-// Simulación de datos guardados en localStorage
-// (En tu sitio real, estos llegan desde la página de productos)
+// --- SIMULACIÓN DE DATOS (solo para pruebas) ---
 if (!localStorage.getItem("cart")) {
   const ejemploCart = [
     {
@@ -12,9 +11,12 @@ if (!localStorage.getItem("cart")) {
   localStorage.setItem("cart", JSON.stringify(ejemploCart));
 }
 
+// --- REFERENCIAS DOM ---
 const cartContainer = document.getElementById("cart-items");
 const totalEl = document.getElementById("cart-total");
+const themeToggle = document.getElementById("modo-toggle");
 
+// --- RENDERIZAR CARRITO ---
 function renderCart() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   cartContainer.innerHTML = "";
@@ -44,6 +46,7 @@ function renderCart() {
   addEvents();
 }
 
+// --- ACTUALIZAR CANTIDAD ---
 function addEvents() {
   const inputs = document.querySelectorAll(".cantidad-input");
   inputs.forEach(input => {
@@ -59,7 +62,7 @@ function addEvents() {
   });
 }
 
-// Botones
+// --- BOTONES ---
 document.querySelector(".seguir").addEventListener("click", () => {
   window.location.href = "index.html";
 });
@@ -70,4 +73,29 @@ document.querySelector(".finalizar").addEventListener("click", () => {
   renderCart();
 });
 
+// --- MODO OSCURO ---
+function aplicarModoOscuro(activar) {
+  if (activar) {
+    document.body.classList.add("modo-oscuro");
+    localStorage.setItem("modoOscuro", "true");
+  } else {
+    document.body.classList.remove("modo-oscuro");
+    localStorage.setItem("modoOscuro", "false");
+  }
+}
+
+// Cargar preferencia guardada
+if (localStorage.getItem("modoOscuro") === "true") {
+  document.body.classList.add("modo-oscuro");
+  if (themeToggle) themeToggle.checked = true;
+}
+
+// Cambiar modo al hacer clic
+if (themeToggle) {
+  themeToggle.addEventListener("change", e => {
+    aplicarModoOscuro(e.target.checked);
+  });
+}
+
+// --- INICIALIZAR ---
 renderCart();
