@@ -1,3 +1,4 @@
+// js/product-info.js
 document.addEventListener("DOMContentLoaded", () => {
   const id = localStorage.getItem("productID");
   if (!id) {
@@ -8,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const url = `https://japceibal.github.io/emercado-api/products/${id}.json`;
   const urlComments = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
 
-  // Elementos del DOM
   const pName = document.getElementById("p-name");
   const pDescription = document.getElementById("p-description");
   const pCategory = document.getElementById("p-category");
@@ -18,122 +18,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const ratingsList = document.getElementById("ratings-list");
   const ratingForm = document.getElementById("rating-form");
   const relatedContainer = document.getElementById("related-products");
-  const ratingWrap = document.querySelector(".rating-wrap"); // Contenedor de la valoración
+  const ratingWrap = document.querySelector(".rating-wrap");
 
-  // Función para generar estrellas
   function estrellas(score) {
     return "★".repeat(score) + "☆".repeat(5 - score);
   }
 
-  // Función para crear carrusel con Bootstrap
   function crearCarrusel(imagenes) {
     if (!imagenes || imagenes.length === 0) return "";
-
-    let indicadores = "";
-    let items = "";
-
+    let indicadores = "", items = "";
     imagenes.forEach((img, index) => {
-      indicadores += `
-        <button type="button" data-bs-target="#carouselProduct" data-bs-slide-to="${index}" 
-          class="${index === 0 ? "active" : ""}" aria-current="${index === 0 ? "true" : "false"}"></button>
-      `;
-
-      items += `
-        <div class="carousel-item ${index === 0 ? "active" : ""}">
-          <img src="${img}" class="d-block w-100 rounded" alt="Imagen del producto ${index + 1}">
-        </div>
-      `;
+      indicadores += `<button type="button" data-bs-target="#carouselProduct" data-bs-slide-to="${index}" class="${index === 0 ? "active" : ""}" aria-current="${index === 0 ? "true" : "false"}"></button>`;
+      items += `<div class="carousel-item ${index === 0 ? "active" : ""}"><img src="${img}" class="d-block w-100 rounded" alt="Imagen ${index+1}"></div>`;
     });
-
     return `
       <div id="carouselProduct" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">${indicadores}</div>
         <div class="carousel-inner">${items}</div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-          <span class="visually-hidden">Anterior</span>
+          <span class="carousel-control-prev-icon"></span><span class="visually-hidden">Anterior</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-          <span class="visually-hidden">Siguiente</span>
+          <span class="carousel-control-next-icon"></span><span class="visually-hidden">Siguiente</span>
         </button>
-      </div>
-    `;
+      </div>`;
   }
 
-  // Mostrar comentarios
-  function mostrarComentarios(comments) {
-    ratingsList.innerHTML = "";
-    comments.forEach(c => {
-      ratingsList.innerHTML += `
-        <li class="list-group-item">
-          <strong>${c.user}</strong> 
-          <small class="text-muted">· ${c.dateTime}</small><br>
-          ${estrellas(c.score)}<br>
-          <p>${c.description}</p>
-        </li>
-      `;
-    });
-
-    // Actualizar valoración promedio
-    actualizarValoracionPromedio(comments);
-  }
-
-  // Calcular y mostrar promedio de estrellas
-  function actualizarValoracionPromedio(comments) {
-    if (comments.length === 0) {
-      ratingWrap.innerHTML = `<strong>Valoración del producto:</strong> <span class="text-muted">Sin calificaciones</span>`;
-      return;
-    }
-
-    const total = comments.reduce((acc, c) => acc + c.score, 0);
-    const promedio = (total / comments.length).toFixed(1);
-
-    ratingWrap.innerHTML = `
-      <strong>Valoración del producto:</strong>
-      <span class="stars">${estrellas(Math.round(promedio))}</span>
-      <span class="ms-2">(${promedio} / 5, ${comments.length} opiniones)</span>
-    `;
-  }
-
-  // Obtener comentarios guardados en localStorage
-  function obtenerComentariosLocales() {
-    const stored = localStorage.getItem(`comments_${id}`);
-    return stored ? JSON.parse(stored) : [];
-  }
-
-  // Guardar comentarios en localStorage
-  function guardarComentariosLocales(comments) {
-    localStorage.setItem(`comments_${id}`, JSON.stringify(comments));
-  }
-
-  // Agregar comentario del formulario
-  ratingForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const texto = document.getElementById("rating-text").value;
-    const puntaje = parseInt(document.getElementById("rating-score").value);
-
-    if (texto && puntaje) {
-      const nuevo = {
-        user: localStorage.getItem("username") || "Anónimo",
-        dateTime: new Date().toLocaleString(),
-        description: texto,
-        score: puntaje
-      };
-
-      // Guardar en localStorage
-      const actuales = obtenerComentariosLocales();
-      actuales.unshift(nuevo);
-      guardarComentariosLocales(actuales);
-
-      // Mostrar de nuevo todos
-      mostrarComentarios(actuales.concat(comentariosAPI));
-
-      ratingForm.reset();
-    }
-  });
-
-  // Mostrar productos relacionados
   function mostrarRelacionados(relacionados) {
     relatedContainer.innerHTML = "";
     relacionados.forEach(prod => {
@@ -141,12 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="col-md-3">
           <div class="card h-100 related-card" data-id="${prod.id}" style="cursor:pointer;">
             <img src="${prod.image}" class="card-img-top" alt="${prod.name}">
-            <div class="card-body">
-              <h6 class="card-title">${prod.name}</h6>
-            </div>
+            <div class="card-body"><h6 class="card-title">${prod.name}</h6></div>
           </div>
-        </div>
-      `;
+        </div>`;
     });
 
     document.querySelectorAll(".related-card").forEach(card => {
@@ -157,12 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Variable global para comentarios de la API
-  let comentariosAPI = [];
-
   // Cargar datos del producto
   fetch(url)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
       pName.textContent = data.name;
       pDescription.textContent = data.description;
@@ -172,91 +76,84 @@ document.addEventListener("DOMContentLoaded", () => {
       carrusel.innerHTML = crearCarrusel(data.images);
       mostrarRelacionados(data.relatedProducts);
     })
-    .catch(error => {
-      console.error("Error al cargar el producto:", error);
+    .catch(err => {
+      console.error("Error al cargar el producto:", err);
     });
 
-  // Cargar comentarios (API + LocalStorage)
+  // Comentarios (mantengo tu lógica)
+  function obtenerComentariosLocales() {
+    const stored = localStorage.getItem(`comments_${id}`);
+    return stored ? JSON.parse(stored) : [];
+  }
+  function guardarComentariosLocales(comments) {
+    localStorage.setItem(`comments_${id}`, JSON.stringify(comments));
+  }
+
+  let comentariosAPI = [];
   fetch(urlComments)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
       comentariosAPI = data;
       const locales = obtenerComentariosLocales();
       mostrarComentarios(locales.concat(comentariosAPI));
     })
-    .catch(error => {
-      console.error("Error al cargar comentarios:", error);
-      const locales = obtenerComentariosLocales();
-      mostrarComentarios(locales);
+    .catch(err => {
+      console.error("Error al cargar comentarios:", err);
+      mostrarComentarios(obtenerComentariosLocales());
     });
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("modo-toggle");
 
-  // Ver si el usuario tenía guardado el modo
-  const modoActual = localStorage.getItem("modo") || "claro";
-  if (modoActual === "oscuro") {
-    activarModoOscuro();
-    toggle.checked = true;
+  function mostrarComentarios(comments) {
+    ratingsList.innerHTML = "";
+    comments.forEach(c => {
+      ratingsList.innerHTML += `
+        <li class="list-group-item">
+          <strong>${c.user}</strong> <small class="text-muted">· ${c.dateTime}</small><br>
+          ${estrellas(c.score)}<br><p>${c.description}</p>
+        </li>`;
+    });
+    actualizarValoracionPromedio(comments);
+  }
+  function actualizarValoracionPromedio(comments) {
+    if (!comments.length) {
+      ratingWrap.innerHTML = `<strong>Valoración del producto:</strong> <span class="text-muted">Sin calificaciones</span>`;
+      return;
+    }
+    const total = comments.reduce((acc, c) => acc + c.score, 0);
+    const promedio = (total / comments.length).toFixed(1);
+    ratingWrap.innerHTML = `<strong>Valoración del producto:</strong><span class="stars">${estrellas(Math.round(promedio))}</span><span class="ms-2">(${promedio} / 5, ${comments.length} opiniones)</span>`;
   }
 
-  // Escuchar el cambio del switch
-  toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-      activarModoOscuro();
-      localStorage.setItem("modo", "oscuro");
-    } else {
-      desactivarModoOscuro();
-      localStorage.setItem("modo", "claro");
+  ratingForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const texto = document.getElementById("rating-text").value;
+    const puntaje = parseInt(document.getElementById("rating-score").value);
+    if (texto && puntaje) {
+      const nuevo = { user: localStorage.getItem("username") || "Anónimo", dateTime: new Date().toLocaleString(), description: texto, score: puntaje };
+      const actuales = obtenerComentariosLocales();
+      actuales.unshift(nuevo);
+      guardarComentariosLocales(actuales);
+      mostrarComentarios(actuales.concat(comentariosAPI));
+      ratingForm.reset();
     }
   });
-});
 
-// Funciones para aplicar estilos
-function activarModoOscuro() {
-  document.body.classList.add("modo-oscuro");
-
-  // Cambiar Bootstrap navbar
-  const navbar = document.querySelector(".navbar");
-  if (navbar) {
-    navbar.classList.remove("navbar-light", "bg-light");
-    navbar.classList.add("navbar-dark", "bg-dark");
+  // BOTÓN COMPRAR: agrega y redirige + notifica navbar
+  const btnComprar = document.querySelector(".btn-comprar");
+  if (btnComprar) {
+    btnComprar.addEventListener("click", () => {
+      fetch(url)
+        .then(res => res.json())
+        .then(product => {
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const existing = cart.find(item => item.id === product.id);
+          if (existing) existing.cantidad = (existing.cantidad || 1) + 1;
+          else cart.push({ id: product.id, name: product.name, cost: product.cost, currency: product.currency, image: product.images[0], cantidad: 1 });
+          localStorage.setItem("cart", JSON.stringify(cart));
+          // despachar evento para que navbar actualice badge
+          document.dispatchEvent(new Event("cartUpdated"));
+          window.location.href = "cart.html";
+        })
+        .catch(err => console.error("Error al agregar producto:", err));
+    });
   }
-
-  // Cambiar color de cards
-  document.querySelectorAll(".card").forEach(card => {
-    card.classList.add("bg-dark", "text-white");
-  });
-
-  // Cambiar color de botones
-  document.querySelectorAll(".btn").forEach(btn => {
-    btn.classList.add("btn-outline-light");
-    btn.classList.remove("btn-outline-dark");
-  });
-}
-
-function desactivarModoOscuro() {
-  document.body.classList.remove("modo-oscuro");
-
-  const navbar = document.querySelector(".navbar");
-  if (navbar) {
-    navbar.classList.remove("navbar-dark", "bg-dark");
-    navbar.classList.add("navbar-light", "bg-light");
-  }
-
-  document.querySelectorAll(".card").forEach(card => {
-    card.classList.remove("bg-dark", "text-white");
-  });
-
-  document.querySelectorAll(".btn").forEach(btn => {
-    btn.classList.remove("btn-outline-light");
-    btn.classList.add("btn-outline-dark");
-  });
-}
-
-// BOTON COMPRAR
-
-document.querySelector('.btn-comprar').addEventListener('click', function() {
-  // Coloca aquí el código que quieres que se ejecute al hacer clic
-  alert('¡Se agregó el producto al carrito!');
 });

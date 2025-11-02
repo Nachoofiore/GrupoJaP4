@@ -1,0 +1,51 @@
+<!-- navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-2 shadow-sm">
+  <label class="switch me-3" style="transform: scale(1.05);"> 
+    <input type="checkbox" id="modo-toggle">
+    <span class="slider">
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+    </span>
+  </label>
+
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Soluginama</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-3">
+
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+        <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
+
+        <!-- Carrito  -->
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center position-relative" href="cart.html" id="nav-cart-link">
+            <i class="bi bi-cart-fill me-1" aria-hidden="true"></i>
+            Carrito
+            <!-- badge: bg-info = azul clarito en Bootstrap -->
+            <span id="nav-cart-badge" class="badge rounded-pill bg-info text-dark ms-2" style="min-width: 26px; text-align:center; display:none;">0</span>
+          </a>
+        </li>
+
+        <!-- Dropdown de usuario -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            usuario
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item Exit" href="#">Cerrar sesión</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

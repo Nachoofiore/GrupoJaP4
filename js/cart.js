@@ -1,101 +1,89 @@
-// --- SIMULACIÓN DE DATOS (solo para pruebas) ---
-if (!localStorage.getItem("cart")) {
-  const ejemploCart = [
-    {
-      nombre: "Pelota de básquetbol",
-      precio: 2999,
-      img: "https://m.media-amazon.com/images/I/61XjD6J0YBL._AC_SL1500_.jpg",
-      cantidad: 1
+document.addEventListener("DOMContentLoaded", () => {
+  const cartItemsContainer = document.getElementById("cart-items");
+  const totalElement = document.getElementById("cart-total");
+
+  // --- Mostrar productos del carrito ---
+  function renderCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = `<p class="text-center text-muted mt-4">Tu carrito está vacío 🛒</p>`;
+      totalElement.textContent = "$0";
+      return;
     }
-  ];
-  localStorage.setItem("cart", JSON.stringify(ejemploCart));
-}
 
-// --- REFERENCIAS DOM ---
-const cartContainer = document.getElementById("cart-items");
-const totalEl = document.getElementById("cart-total");
-const themeToggle = document.getElementById("modo-toggle");
+    let html = "";
+    let total = 0;
 
-// --- RENDERIZAR CARRITO ---
-function renderCart() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cartContainer.innerHTML = "";
-  let total = 0;
+    cart.forEach((item, index) => {
+      const subtotal = item.cost * item.cantidad;
+      total += subtotal;
 
-  cart.forEach((item, index) => {
-    const subtotal = item.precio * item.cantidad;
-    total += subtotal;
+      html += `
+        <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
+          <div class="d-flex align-items-center">
+            <img src="${item.image}" alt="${item.name}" width="70" class="rounded me-3">
+            <div>
+              <h5 class="mb-1">${item.name}</h5>
+              <p class="mb-0 text-muted">${item.currency} ${item.cost}</p>
+            </div>
+          </div>
 
-    const itemHTML = `
-      <div class="cart-item">
-        <img src="${item.img}" alt="${item.nombre}">
-        <div class="item-info">
-          <h3>${item.nombre}</h3>
-          <p>Precio: $${item.precio}</p>
+          <div class="d-flex align-items-center gap-3">
+            <input type="number" min="1" value="${item.cantidad}" 
+              class="form-control form-control-sm cantidad-input" data-index="${index}" style="width:70px;">
+            <span class="subtotal fw-bold">${item.currency} ${subtotal}</span>
+            <button class="btn btn-outline-danger btn-sm eliminar-btn" data-index="${index}">🗑️</button>
+          </div>
         </div>
-        <div class="item-actions">
-          <input type="number" min="1" value="${item.cantidad}" data-index="${index}" class="cantidad-input">
-          <p><strong>Subtotal:</strong> $<span class="subtotal">${subtotal}</span></p>
-        </div>
-      </div>
-    `;
-    cartContainer.insertAdjacentHTML("beforeend", itemHTML);
-  });
-
-  totalEl.textContent = `$${total}`;
-  addEvents();
-}
-
-// --- ACTUALIZAR CANTIDAD ---
-function addEvents() {
-  const inputs = document.querySelectorAll(".cantidad-input");
-  inputs.forEach(input => {
-    input.addEventListener("input", e => {
-      const index = e.target.dataset.index;
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      let cantidad = parseInt(e.target.value);
-      if (isNaN(cantidad) || cantidad < 1) cantidad = 1;
-      cart[index].cantidad = cantidad;
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
+      `;
     });
-  });
-}
 
-// --- BOTONES ---
-document.querySelector(".seguir").addEventListener("click", () => {
-  window.location.href = "index.html";
-});
+    cartItemsContainer.innerHTML = html;
+    totalElement.textContent = `${cart[0]?.currency || "$"} ${total}`;
 
-document.querySelector(".finalizar").addEventListener("click", () => {
-  alert("Compra finalizada con éxito 🛒");
-  localStorage.removeItem("cart");
-  renderCart();
-});
+    // --- Escuchar cambios de cantidad ---
+    document.querySelectorAll(".cantidad-input").forEach(input => {
+      input.addEventListener("input", (e) => {
+        const index = e.target.dataset.index;
+        const newQty = parseInt(e.target.value);
+        if (newQty < 1) return;
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart[index].cantidad = newQty;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+        document.dispatchEvent(new Event("cartUpdated"));
+      });
+    });
 
-// --- MODO OSCURO ---
-function aplicarModoOscuro(activar) {
-  if (activar) {
-    document.body.classList.add("modo-oscuro");
-    localStorage.setItem("modoOscuro", "true");
-  } else {
-    document.body.classList.remove("modo-oscuro");
-    localStorage.setItem("modoOscuro", "false");
+    // --- Eliminar producto ---
+    document.querySelectorAll(".eliminar-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = e.target.dataset.index;
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+        document.dispatchEvent(new Event("cartUpdated"));
+      });
+    });
   }
-}
 
-// Cargar preferencia guardada
-if (localStorage.getItem("modoOscuro") === "true") {
-  document.body.classList.add("modo-oscuro");
-  if (themeToggle) themeToggle.checked = true;
-}
+  renderCart();
 
-// Cambiar modo al hacer clic
-if (themeToggle) {
-  themeToggle.addEventListener("change", e => {
-    aplicarModoOscuro(e.target.checked);
+  // --- Botón “Seguir comprando” ---
+  document.querySelector(".seguir").addEventListener("click", () => {
+    window.location.href = "products.html";
   });
-}
 
-// --- INICIALIZAR ---
-renderCart();
+  // --- Botón “Finalizar compra” ---
+  document.querySelector(".finalizar").addEventListener("click", () => {
+    alert("¡Gracias por tu compra! 🛍️");
+    localStorage.removeItem("cart");
+    renderCart();
+    document.dispatchEvent(new Event("cartUpdated"));
+  });
+
+  // --- Actualizar al recibir cambios desde otras páginas ---
+  document.addEventListener("cartUpdated", renderCart);
+});

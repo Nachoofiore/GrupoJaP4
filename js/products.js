@@ -1,3 +1,4 @@
+// js/products.js (versión corregida)
 document.addEventListener("DOMContentLoaded", function () {
   const productContainer = document.getElementById("product-container");
   const searchInput = document.getElementById("searchInput");
@@ -5,9 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const maxPriceInput = document.getElementById("maxPrice");
   const filterBtn = document.getElementById("filterBtn");
   const clearFilterBtn = document.getElementById("clearFilterBtn");
-
-  const profileDropdownToggle = document.getElementById("profileDropdown");
-  const storedUsername = localStorage.getItem("username");
 
   // Variables globales
   let currentProducts = [];
@@ -18,74 +16,57 @@ document.addEventListener("DOMContentLoaded", function () {
   const catID = storedCatID ? storedCatID : 101;
   const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
-  // Cerrar sesión
-  document.querySelector(".Exit").addEventListener("click", () => {
-    localStorage.removeItem("username");
-    window.location.href = "login.html";
-  });
-
-  // Mostrar usuario en el dropdown
-  if (storedUsername) profileDropdownToggle.textContent = storedUsername;
-
-  // Función para mostrar productos
+  // --- Funciones de UI (puras, sin tocar el navbar) ---
   function showProducts(products) {
     productContainer.innerHTML = "";
 
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
       productContainer.innerHTML = `<p class="text-center text-muted">No hay productos que coincidan con el filtro.</p>`;
       return;
     }
 
-    products.forEach((p) => {
-      const productHtml = `
-        <div class="col">
-          <div class="card h-100 shadow-sm">
-            <img src="${p.image}" class="card-img-top" alt="${p.name}">
-            <div class="card-body">
-              <h5 class="card-title">${p.name}</h5>
-              <p class="card-text">${p.description}</p>
-              <p class="card-text"><strong>Precio:</strong> ${p.currency} ${p.cost}</p>
-                <a href="product-info.html" class="btn btn-primary see-more" data-id="${p.id}">
-              Ver detalle
-            </a>
-            </div>
-            <div class="card-footer d-flex justify-content-between">
-              <small class="text-muted">Vendidos: ${p.soldCount}</small>
-            </div>
+    const html = products.map((p) => `
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="${p.image}" class="card-img-top" alt="${p.name}">
+          <div class="card-body">
+            <h5 class="card-title">${p.name}</h5>
+            <p class="card-text">${p.description}</p>
+            <p class="card-text"><strong>Precio:</strong> ${p.currency} ${p.cost}</p>
+            <a href="product-info.html" class="btn btn-primary see-more" data-id="${p.id}">Ver detalle</a>
           </div>
-        </div>`;
-      productContainer.innerHTML += productHtml;
-    });
+          <div class="card-footer d-flex justify-content-between">
+            <small class="text-muted">Vendidos: ${p.soldCount}</small>
+          </div>
+        </div>
+      </div>`).join("");
+
+    productContainer.innerHTML = html;
   }
 
-  // Función para filtrar por precio
   function filterByPrice() {
     const min = parseInt(minPriceInput.value) || 0;
     const max = parseInt(maxPriceInput.value) || Infinity;
-
     filteredProducts = currentProducts.filter((p) => p.cost >= min && p.cost <= max);
-    applySearch(); // aplicar búsqueda después de filtrar
+    applySearch();
   }
 
-  // Función para ordenar
   function sortProducts(criteria) {
     if (criteria === "asc") filteredProducts.sort((a, b) => a.cost - b.cost);
     else if (criteria === "desc") filteredProducts.sort((a, b) => b.cost - a.cost);
     else if (criteria === "rel") filteredProducts.sort((a, b) => b.soldCount - a.soldCount);
-
-    applySearch(); // mantener búsqueda activa después de ordenar
+    applySearch();
   }
 
-  // Función para búsqueda en tiempo real
   function applySearch() {
-    const query = searchInput.value.toLowerCase();
+    const q = (searchInput.value || "").toLowerCase();
     const result = filteredProducts.filter(
-      (p) => p.name.toLowerCase().includes(query) || p.description.toLowerCase().includes(query)
+      (p) => p.name.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q))
     );
     showProducts(result);
   }
 
-  // Eventos
+  // Eventos UI
   filterBtn.addEventListener("click", filterByPrice);
 
   clearFilterBtn.addEventListener("click", () => {
@@ -99,94 +80,28 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("sortAsc").addEventListener("click", () => sortProducts("asc"));
   document.getElementById("sortDesc").addEventListener("click", () => sortProducts("desc"));
   document.getElementById("sortRel").addEventListener("click", () => sortProducts("rel"));
-
   searchInput.addEventListener("input", applySearch);
 
-  // === Punto 4: guardar ID y navegar al detalle ===
-document.addEventListener("click", (e) => {
-  const link = e.target.closest(".see-more");
-  if (!link) return;
-  e.preventDefault();
+  // Manejar click en "Ver detalle" guardando id y navegando
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest(".see-more");
+    if (!link) return;
+    e.preventDefault();
+    const productId = link.dataset.id;
+    localStorage.setItem("productID", String(productId));
+    window.location.href = link.getAttribute("href");
+  });
 
-  const productId = link.dataset.id;
-  localStorage.setItem("productID", String(productId));
-  window.location.href = link.getAttribute("href"); // "product-info.html"
-});
-
-  // Cargar productos desde la API
+  // Cargar productos desde la API (esto ya no dependerá del navbar)
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      currentProducts = data.products;
+      currentProducts = data.products || [];
       filteredProducts = [...currentProducts];
       showProducts(filteredProducts);
     })
     .catch((err) => {
       console.error("Error al cargar productos:", err);
-      productContainer.innerHTML =
-        `<p class="text-danger text-center">No se pudieron cargar los productos. Intente más tarde.</p>`;
+      productContainer.innerHTML = `<p class="text-danger text-center">No se pudieron cargar los productos. Intente más tarde.</p>`;
     });
 });
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("modo-toggle");
-
-  // Ver si el usuario tenía guardado el modo
-  const modoActual = localStorage.getItem("modo") || "claro";
-  if (modoActual === "oscuro") {
-    activarModoOscuro();
-    toggle.checked = true;
-  }
-
-  // Escuchar el cambio del switch
-  toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-      activarModoOscuro();
-      localStorage.setItem("modo", "oscuro");
-    } else {
-      desactivarModoOscuro();
-      localStorage.setItem("modo", "claro");
-    }
-  });
-});
-
-// Funciones para aplicar estilos
-function activarModoOscuro() {
-  document.body.classList.add("modo-oscuro");
-
-  // Cambiar Bootstrap navbar
-  const navbar = document.querySelector(".navbar");
-  if (navbar) {
-    navbar.classList.remove("navbar-light", "bg-light");
-    navbar.classList.add("navbar-dark", "bg-dark");
-  }
-
-  // Cambiar color de cards
-  document.querySelectorAll(".card").forEach(card => {
-    card.classList.add("bg-dark", "text-white");
-  });
-
-  // Cambiar color de botones
-  document.querySelectorAll(".btn").forEach(btn => {
-    btn.classList.add("btn-outline-light");
-    btn.classList.remove("btn-outline-dark");
-  });
-}
-
-function desactivarModoOscuro() {
-  document.body.classList.remove("modo-oscuro");
-
-  const navbar = document.querySelector(".navbar");
-  if (navbar) {
-    navbar.classList.remove("navbar-dark", "bg-dark");
-    navbar.classList.add("navbar-light", "bg-light");
-  }
-
-  document.querySelectorAll(".card").forEach(card => {
-    card.classList.remove("bg-dark", "text-white");
-  });
-
-  document.querySelectorAll(".btn").forEach(btn => {
-    btn.classList.remove("btn-outline-light");
-    btn.classList.add("btn-outline-dark");
-  });
-}
