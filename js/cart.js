@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById("cart-items");
   const totalElement = document.getElementById("cart-total");
 
+  // --- Conversión de moneda ---
+const USD_TO_UYU = 40; // ajustá según la tasa actual
+const UYU_TO_USD = 1 / USD_TO_UYU;
+
   // --- Mostrar productos del carrito ---
   function renderCart() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -13,11 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let html = "";
-    let total = 0;
+    let totalUYU = 0;
+let totalUSD = 0;
 
-    cart.forEach((item, index) => {
-      const subtotal = item.cost * item.cantidad;
-      total += subtotal;
+cart.forEach((item, index) => {
+  const subtotal = item.cost * item.cantidad;
+
+  // Sumar al total en ambas monedas
+  if (item.currency === "USD") {
+    totalUSD += subtotal;
+    totalUYU += subtotal * USD_TO_UYU;
+  } else if (item.currency === "UYU" || item.currency === "$") {
+    totalUYU += subtotal;
+    totalUSD += subtotal * UYU_TO_USD;
+  }
 
       html += `
         <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
@@ -40,7 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     cartItemsContainer.innerHTML = html;
-    totalElement.textContent = `${cart[0]?.currency || "$"} ${total}`;
+   totalElement.innerHTML = `
+  <div><strong>Total:</strong></div>
+  <div>U$S ${totalUSD.toFixed(2)} &nbsp; | &nbsp; $${totalUYU.toFixed(0)} UYU</div>
+`;
+
 
     // --- Escuchar cambios de cantidad ---
     document.querySelectorAll(".cantidad-input").forEach(input => {
