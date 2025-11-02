@@ -17,21 +17,7 @@ const UYU_TO_USD = 1 / USD_TO_UYU;
     }
 
     let html = "";
-    let totalUYU = 0;
-let totalUSD = 0;
-
-cart.forEach((item, index) => {
-  const subtotal = item.cost * item.cantidad;
-
-  // Sumar al total en ambas monedas
-  if (item.currency === "USD") {
-    totalUSD += subtotal;
-    totalUYU += subtotal * USD_TO_UYU;
-  } else if (item.currency === "UYU" || item.currency === "$") {
-    totalUYU += subtotal;
-    totalUSD += subtotal * UYU_TO_USD;
-  }
-
+    
       html += `
         <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
           <div class="d-flex align-items-center">
@@ -53,11 +39,7 @@ cart.forEach((item, index) => {
     });
 
     cartItemsContainer.innerHTML = html;
-   totalElement.innerHTML = `
-  <div><strong>Total:</strong></div>
-  <div>U$S ${totalUSD.toFixed(2)} &nbsp; | &nbsp; $${totalUYU.toFixed(0)} UYU</div>
-`;
-
+    totalElement.textContent = `${cart[0]?.currency || "$"} ${total}`;
 
     // --- Escuchar cambios de cantidad ---
     document.querySelectorAll(".cantidad-input").forEach(input => {
