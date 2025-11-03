@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById("cart-items");
   const totalElement = document.getElementById("cart-total");
 
+  // --- Conversión de moneda ---
+const USD_TO_UYU = 40; // ajustá según la tasa actual
+const UYU_TO_USD = 1 / USD_TO_UYU;
+
   // --- Mostrar productos del carrito ---
   function renderCart() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -11,37 +15,48 @@ document.addEventListener("DOMContentLoaded", () => {
       totalElement.textContent = "$0";
       return;
     }
+let html = "";
+ let totalUYU = 0; 
+ let totalUSD = 0;
 
-    let html = "";
-    let total = 0;
+ cart.forEach((item, index) => { 
+  const subtotal = item.cost * item.cantidad;
 
-    cart.forEach((item, index) => {
-      const subtotal = item.cost * item.cantidad;
-      total += subtotal;
+  // Sumar al total en ambas monedas
+  if (item.currency === "USD") {
+    totalUSD += subtotal;
+    totalUYU += subtotal * USD_TO_UYU;
+    } else if (item.currency === "UYU" || item.currency === "$") {
+      totalUYU += subtotal;
+       totalUSD += subtotal * UYU_TO_USD; }
 
-      html += `
+  
+    
+       html += `
         <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
           <div class="d-flex align-items-center">
-            <img src="${item.image}" alt="${item.name}" width="70" class="rounded me-3">
+            <img src="${item.image}" alt="${item.name}" width="120" class="rounded me-3">
             <div>
               <h5 class="mb-1">${item.name}</h5>
-              <p class="mb-0 text-muted">${item.currency} ${item.cost}</p>
+              <p class="mb-1 text-muted precio">${item.currency} ${item.cost}</p>
+              <p class="subtotal mb-0"><strong>Subtotal:</strong> ${item.currency} ${subtotal}</p>
             </div>
           </div>
 
           <div class="d-flex align-items-center gap-3">
-            <input type="number" min="1" value="${item.cantidad}" 
+            <input type="number" min="1" value="${item.cantidad}"
               class="form-control form-control-sm cantidad-input" data-index="${index}" style="width:70px;">
-            <span class="subtotal fw-bold">${item.currency} ${subtotal}</span>
             <button class="btn btn-outline-danger btn-sm eliminar-btn" data-index="${index}">🗑️</button>
           </div>
         </div>
       `;
     });
 
+    // ✅ Total en una línea
     cartItemsContainer.innerHTML = html;
-    totalElement.textContent = `${cart[0]?.currency || "$"} ${total}`;
-
+    totalElement.innerHTML = `
+      <strong>Total:</strong> U$S ${totalUSD.toFixed(2)} | $${totalUYU.toFixed(0)} UYU
+    `;
     // --- Escuchar cambios de cantidad ---
     document.querySelectorAll(".cantidad-input").forEach(input => {
       input.addEventListener("input", (e) => {
