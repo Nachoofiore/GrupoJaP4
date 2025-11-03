@@ -20,15 +20,23 @@ let html = "";
  let totalUSD = 0;
 
  cart.forEach((item, index) => { 
-  const subtotal = item.cost * item.cantidad;
+ const subtotal = item.cost * item.cantidad;
 
-  // Sumar al total en ambas monedas
-  if (item.currency === "USD") {
-    totalUSD += subtotal;
-    totalUYU += subtotal * USD_TO_UYU;
-    } else if (item.currency === "UYU" || item.currency === "$") {
-      totalUYU += subtotal;
-       totalUSD += subtotal * UYU_TO_USD; }
+// 🔹 Subtotales individuales en ambas monedas
+let subtotalUSD = 0;
+let subtotalUYU = 0;
+
+if (item.currency === "USD") {
+  subtotalUSD = subtotal;
+  subtotalUYU = subtotal * USD_TO_UYU;
+} else if (item.currency === "UYU" || item.currency === "$") {
+  subtotalUYU = subtotal;
+  subtotalUSD = subtotal * UYU_TO_USD;
+}
+
+// 🔹 Sumar al total general
+totalUSD += subtotalUSD;
+totalUYU += subtotalUYU;
 
   
     
@@ -39,7 +47,11 @@ let html = "";
             <div>
               <h5 class="mb-1">${item.name}</h5>
               <p class="mb-1 text-muted precio">${item.currency} ${item.cost}</p>
-              <p class="subtotal mb-0"><strong>Subtotal:</strong> ${item.currency} ${subtotal}</p>
+              <p class="subtotal mb-0">
+  <strong>Subtotal:</strong> 
+  U$S ${subtotalUSD.toFixed(2)} | $${subtotalUYU.toFixed(0)} UYU
+</p>
+
             </div>
           </div>
 
@@ -57,6 +69,7 @@ let html = "";
     totalElement.innerHTML = `
       <strong>Total:</strong> U$S ${totalUSD.toFixed(2)} | $${totalUYU.toFixed(0)} UYU
     `;
+
     // --- Escuchar cambios de cantidad ---
     document.querySelectorAll(".cantidad-input").forEach(input => {
       input.addEventListener("input", (e) => {
