@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi perfil</title>
   <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
@@ -16,41 +17,7 @@
 </head>
 
 <body>
-  <!-- NAV -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light p-1">
-     <div class="theme-toggle">
-        <label class="switch">
-          <input type="checkbox" id="themeSwitch">
-          <span class="slider">
-    <span class="icon sun">☀️</span>
-    <span class="icon moon">🌙</span>
-  </span>
-      </div>
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Soluginama</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
-          <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-              Usuario
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- PERFIL -->
+  <div id="navbar-container"></div>
   <main>
     <div class="profile-card">
      
@@ -74,6 +41,8 @@
     </div>
   </main>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/navbar.js"></script>
   <script src="js/my-profile.js"></script>
+  
 </body>
 </html>

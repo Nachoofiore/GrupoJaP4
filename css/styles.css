@@ -6,7 +6,7 @@ body{
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Irish Grover', cursive;
 
 }
 
@@ -76,7 +76,7 @@ body {
   background-attachment: fixed; 
   min-height: 100vh;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family:'Irish Grover', cursive;
 }
 .gallery{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 
@@ -104,7 +104,6 @@ body {
   background:#f3f7fb;
   border-radius:18px;
   padding:12px;             /* marco suave alrededor */
-  box: shadow 33px;;
 }
 
 @media (max-width: 992px){
@@ -278,4 +277,29 @@ body.modo-oscuro .slider {
 
 body.modo-oscuro input:checked + .slider {
   background-color: #f9d71c;
+}
+
+
+/* BOTON COMPRAR*/ 
+
+.btn-comprar {
+  font-size: 30px;
+  cursor: pointer; 
+  border-radius: 5px;
+}
+
+.btn-comprar:hover {
+  box-shadow: 3px 3px 6px #ffffff;
+}
+
+body.modo-oscuro .product-price {
+  color: #e0e0e0;
+}
+
+body.modo-oscuro .btn-comprar {
+  background-color: #0d6efd;
+}
+
+body.modo-oscuro .btn-success {
+  background-color: #198754;
 }
