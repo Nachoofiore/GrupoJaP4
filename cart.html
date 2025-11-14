@@ -48,27 +48,33 @@
       <p><input type="radio" name="tipoEnvio" id="envioPremium" value="0.15"> <label for="envioPremium">Premium 2 a 5 días (15%)</label></p>
       <p><input type="radio" name="tipoEnvio" id="envioExpress" value="0.07"> <label for="envioExpress">Express 5 a 8 días (7%)</label></p>
       <p><input type="radio" name="tipoEnvio" id="envioStandard" value="0.05"> <label for="envioStandard">Standard 12 a 15 días (5%)</label></p>
+    
     </div>
 
     <!-- INFORMACIÓN DE ENVÍO (UN SOLO FORM) -->
     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
       <form id="form-envio">
         <h3>Información de envío</h3>
+<label for="departamento">Departamento:</label>
+<input type="text" id="departamento" name="departamento" required>
+<small id="err-departamento" style="color:red; display:none;">* Campo obligatorio</small> <br>
 
-        <label for="departamento">Departamento:</label>
-        <input type="text" id="departamento" name="departamento" required> <br>
+<label for="localidad">Localidad:</label>
+<input type="text" id="localidad" name="localidad" required>
+<small id="err-localidad" style="color:red; display:none;">* Campo obligatorio</small> <br>
 
-        <label for="localidad">Localidad:</label>
-        <input type="text" id="localidad" name="localidad" required> <br>
+<label for="calle">Calle:</label>
+<input type="text" id="calle" name="calle" required>
+<small id="err-calle" style="color:red; display:none;">* Campo obligatorio</small> <br>
 
-        <label for="calle">Calle:</label>
-        <input type="text" id="calle" name="calle" required> <br>
+<label for="numdepuerta">Número de puerta:</label>
+<input type="text" id="numdepuerta" name="numdepuerta" required>
+<small id="err-numdepuerta" style="color:red; display:none;">* Campo obligatorio</small> <br>
 
-        <label for="numdepuerta">Número de puerta:</label>
-        <input type="text" id="numdepuerta" name="numdepuerta" required> <br>
+<label for="esquina">Esquina:</label>
+<input type="text" id="esquina" name="esquina" required>
+<small id="err-esquina" style="color:red; display:none;">* Campo obligatorio</small> <br>
 
-        <label for="esquina">Esquina:</label>
-        <input type="text" id="esquina" name="esquina" required> <br>
       </form>
     </div>
 

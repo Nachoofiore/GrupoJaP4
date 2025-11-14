@@ -145,68 +145,90 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --- Botón “Finalizar compra” con validaciones ---
-  document.querySelector(".finalizar").addEventListener("click", () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.querySelector(".finalizar").addEventListener("click", () => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    if (cart.length === 0) {
-      alert("Tu carrito está vacío.");
+  if (cart.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  // cantidades válidas
+  for (let item of cart) {
+    if (!item.cantidad || item.cantidad < 1) {
+      alert("Todas las cantidades deben ser mayores a 0.");
       return;
     }
+  }
 
-    // cantidades válidas
-    for (let item of cart) {
-      if (!item.cantidad || item.cantidad < 1) {
-        alert("Todas las cantidades deben ser mayores a 0.");
-        return;
-      }
+  // dirección completa + borde rojo + texto CAMPOS OBLIGATORIOS
+  const camposDireccion = ["departamento", "localidad", "calle", "numdepuerta", "esquina"];
+  let validoDireccion = true;
+
+  for (let c of camposDireccion) {
+    const el = document.getElementById(c);
+    const err = document.getElementById("err-" + c);
+
+    if (!el.value.trim()) {
+      el.style.border = "2px solid red";     // 🔴 BORDE ROJO
+      err.style.display = "inline";          // 🔴 MOSTRAR “campo obligatorio”
+      validoDireccion = false;
+    } else {
+      el.style.border = "";                  
+      err.style.display = "none";
     }
+  }
 
-    // dirección completa
-    const camposDireccion = ["departamento", "localidad", "calle", "numdepuerta", "esquina"];
-    for (let c of camposDireccion) {
-      const el = document.getElementById(c);
-      if (!el || el.value.trim() === "") {
-        alert("Completa todos los campos de la dirección.");
-        return;
-      }
-    }
+  if (!validoDireccion) {
+    alert("Completa todos los campos de la dirección.");
+    return;
+  }
 
-    // envío seleccionado
-    const envio = document.querySelector("input[name='tipoEnvio']:checked");
-    if (!envio) {
-      alert("Selecciona un tipo de envío.");
+  // envío seleccionado + aviso
+  const envio = document.querySelector("input[name='tipoEnvio']:checked");
+  const errEnvio = document.getElementById("err-envio");
+
+  if (!envio) {
+    errEnvio.style.display = "inline";
+    return;
+  } else {
+    errEnvio.style.display = "none";
+  }
+
+  // pago seleccionado + aviso
+  const pago = document.querySelector("input[name='tipoPago']:checked");
+  const errPago = document.getElementById("err-pago");
+
+  if (!pago) {
+    errPago.style.display = "inline";
+    return;
+  } else {
+    errPago.style.display = "none";
+  }
+
+  // validar campos de la forma de pago seleccionada (ejemplo)
+  if (pago.value === "tarjeta") {
+    const n = document.getElementById("tarjeta-num").value.trim();
+    const t = document.getElementById("tarjeta-tit").value.trim();
+
+    if (!n || !t) {
+      alert("Completa los datos de la tarjeta.");
       return;
     }
-
-    // pago seleccionado
-    const pago = document.querySelector("input[name='tipoPago']:checked");
-    if (!pago) {
-      alert("Selecciona una forma de pago.");
+  } else if (pago.value === "transferencia") {
+    const cbu = document.getElementById("ctacte").value.trim();
+    if (!cbu) {
+      alert("Completa los datos de la transferencia.");
       return;
     }
+  }
 
-    // validar campos de la forma de pago seleccionada (ejemplo)
-    if (pago.value === "tarjeta") {
-      const n = document.getElementById("tarjeta-num").value.trim();
-      const t = document.getElementById("tarjeta-tit").value.trim();
-      if (!n || !t) {
-        alert("Completa los datos de la tarjeta.");
-        return;
-      }
-    } else if (pago.value === "transferencia") {
-      const cbu = document.getElementById("ctacte").value.trim();
-      if (!cbu) {
-        alert("Completa los datos de la transferencia.");
-        return;
-      }
-    }
+  alert("¡Compra realizada con éxito! 🎉");
+  localStorage.removeItem("cart");
+  renderCart();
+  document.dispatchEvent(new Event("cartUpdated"));
+});
 
-  
-    alert("¡Compra realizada con éxito! 🎉");
-    localStorage.removeItem("cart");
-    renderCart();
-    document.dispatchEvent(new Event("cartUpdated"));
-  });
 
   // actualizar cuando otras páginas emiten cartUpdated
   document.addEventListener("cartUpdated", renderCart);
