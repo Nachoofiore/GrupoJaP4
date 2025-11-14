@@ -189,10 +189,12 @@ document.querySelector(".finalizar").addEventListener("click", () => {
   const errEnvio = document.getElementById("err-envio");
 
   if (!envio) {
-    errEnvio.style.display = "inline";
+   errEnvio.classList.add("error-visible");
+
     return;
   } else {
-    errEnvio.style.display = "none";
+    errEnvio.classList.remove("error-visible");
+
   }
 
   // pago seleccionado + aviso
