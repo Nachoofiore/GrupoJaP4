@@ -31,11 +31,90 @@
 
       <div class="total text-end">
         <p><strong></strong> <span id="cart-total">$0</span></p>
+      </div>  
+      
+ <div class="d-flex align-items-start">
+  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Tipo de envío</button> <br>
+    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Información de envío</button> <br>
+    <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false">Forma de pago</button> <br>
+    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Costos</button>
+  </div>
+
+  <div class="tab-content" id="v-pills-tabContent">
+    <!-- TIPOS DE ENVÍO -->
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+      <h3>Tipo de envío</h3>
+      <p><input type="radio" name="tipoEnvio" id="envioPremium" value="0.15"> <label for="envioPremium">Premium 2 a 5 días (15%)</label></p>
+      <p><input type="radio" name="tipoEnvio" id="envioExpress" value="0.07"> <label for="envioExpress">Express 5 a 8 días (7%)</label></p>
+      <p><input type="radio" name="tipoEnvio" id="envioStandard" value="0.05"> <label for="envioStandard">Standard 12 a 15 días (5%)</label></p>
+ 
+    </div>
+
+    <!-- INFORMACIÓN DE ENVÍO (UN SOLO FORM) -->
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+      <form id="form-envio">
+        <h3>Información de envío</h3>
+<label for="departamento">Departamento:</label>
+<input type="text" id="departamento" name="departamento" required>
+<small id="err-departamento" style="color:red; display:none;">* Campo obligatorio</small> <br>
+
+<label for="localidad">Localidad:</label>
+<input type="text" id="localidad" name="localidad" required>
+<small id="err-localidad" style="color:red; display:none;">* Campo obligatorio</small> <br>
+
+<label for="calle">Calle:</label>
+<input type="text" id="calle" name="calle" required>
+<small id="err-calle" style="color:red; display:none;">* Campo obligatorio</small> <br>
+
+<label for="numdepuerta">Número de puerta:</label>
+<input type="text" id="numdepuerta" name="numdepuerta" required>
+<small id="err-numdepuerta" style="color:red; display:none;">* Campo obligatorio</small> <br>
+
+<label for="esquina">Esquina:</label>
+<input type="text" id="esquina" name="esquina" required>
+<small id="err-esquina" style="color:red; display:none;">* Campo obligatorio</small> <br>
+
+      </form>
+    </div>
+
+    <!-- FORMA DE PAGO -->
+    <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">
+      <h3>Forma de pago</h3>
+      <p><input type="radio" name="tipoPago" id="pagoTarjeta" value="tarjeta"> <label for="pagoTarjeta">Tarjeta de crédito</label></p>
+      <p><input type="radio" name="tipoPago" id="pagoTransferencia" value="transferencia"> <label for="pagoTransferencia">Transferencia bancaria</label></p>
+
+      <!-- opcionales: campos específicos para cada pago (ocultos por defecto) -->
+      <div id="datos-tarjeta" style="display:none; margin-top:8px;">
+        <label for="tarjeta-num">Nº tarjeta:</label>
+        <input id="tarjeta-num" type="text"> <br>
+        <label for="tarjeta-tit">Titular:</label>
+        <input id="tarjeta-tit" type="text">
       </div>
+
+      <div id="datos-transferencia" style="display:none; margin-top:8px;">
+        <label for="ctacte">CBU / Alias:</label>
+        <input id="ctacte" type="text">
+      </div>
+    </div>
+
+    <!-- COSTOS -->
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+      <h3>Costos</h3>
+      <p><strong>Subtotal productos:</strong> <span id="costo-subtotal">—</span></p>
+      <p><strong>Costo de envío:</strong> <span id="costo-envio">—</span></p>
+      <hr>
+      <p><strong>Total final:</strong> <span id="costo-total-final">—</span></p>
+    </div>
+  </div>
+</div>
+
+
 
       <div class="botones">
         <button class="seguir">Seguir comprando</button>
         <button class="finalizar">Finalizar compra</button>
+
       </div>
     </div>
   </main>

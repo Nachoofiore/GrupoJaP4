@@ -2,9 +2,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById("cart-items");
   const totalElement = document.getElementById("cart-total");
 
-  // --- Conversión de moneda ---
-const USD_TO_UYU = 40; // ajustá según la tasa actual
-const UYU_TO_USD = 1 / USD_TO_UYU;
+  // Conversión
+  const USD_TO_UYU = 40;
+  const UYU_TO_USD = 1 / USD_TO_UYU;
+
+  // --- función: calcular costos (muestra subtotal, envío y total) ---
+  function calcularCostos(totalUYU) {
+    const envioSeleccionado = document.querySelector("input[name='tipoEnvio']:checked");
+    let costoEnvio = 0;
+    if (envioSeleccionado) {
+      const porcentaje = parseFloat(envioSeleccionado.value);
+      costoEnvio = totalUYU * porcentaje;
+    }
+    const totalFinal = totalUYU + costoEnvio;
+
+    document.getElementById("costo-subtotal").textContent = `$${totalUYU.toFixed(0)} UYU`;
+    document.getElementById("costo-envio").textContent = `$${costoEnvio.toFixed(0)} UYU`;
+    document.getElementById("costo-total-final").textContent = `$${totalFinal.toFixed(0)} UYU`;
+  }
 
   // --- Mostrar productos del carrito ---
   function renderCart() {
@@ -13,45 +28,38 @@ const UYU_TO_USD = 1 / USD_TO_UYU;
     if (cart.length === 0) {
       cartItemsContainer.innerHTML = `<p class="text-center text-muted mt-4">Tu carrito está vacío 🛒</p>`;
       totalElement.textContent = "$0";
+      calcularCostos(0);
       return;
     }
-let html = "";
- let totalUYU = 0; 
- let totalUSD = 0;
 
- cart.forEach((item, index) => { 
- const subtotal = item.cost * item.cantidad;
+    let html = "";
+    let totalUYU = 0;
+    let totalUSD = 0;
 
-// 🔹 Subtotales individuales en ambas monedas
-let subtotalUSD = 0;
-let subtotalUYU = 0;
+    cart.forEach((item, index) => {
+      const subtotal = item.cost * item.cantidad;
+      let subtotalUSD = 0;
+      let subtotalUYU = 0;
 
-if (item.currency === "USD") {
-  subtotalUSD = subtotal;
-  subtotalUYU = subtotal * USD_TO_UYU;
-} else if (item.currency === "UYU" || item.currency === "$") {
-  subtotalUYU = subtotal;
-  subtotalUSD = subtotal * UYU_TO_USD;
-}
+      if (item.currency === "USD") {
+        subtotalUSD = subtotal;
+        subtotalUYU = subtotal * USD_TO_UYU;
+      } else {
+        subtotalUYU = subtotal;
+        subtotalUSD = subtotal * UYU_TO_USD;
+      }
 
-// 🔹 Sumar al total general
-totalUSD += subtotalUSD;
-totalUYU += subtotalUYU;
+      totalUSD += subtotalUSD;
+      totalUYU += subtotalUYU;
 
-  
-    
-       html += `
+      html += `
         <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
           <div class="d-flex align-items-center">
             <img src="${item.image}" alt="${item.name}" width="120" class="rounded me-3">
             <div>
               <h5 class="mb-1">${item.name}</h5>
               <p class="mb-1 text-muted precio">${item.currency} ${item.cost}</p>
-              <p class="subtotal mb-0">
-  <strong>Subtotal:</strong> 
-  U$S ${subtotalUSD.toFixed(2)} | $${subtotalUYU.toFixed(0)} UYU
-</p>
-
+              <p class="subtotal mb-0"><strong>Subtotal:</strong> U$S ${subtotalUSD.toFixed(2)} | $${subtotalUYU.toFixed(0)} UYU</p>
             </div>
           </div>
 
@@ -64,18 +72,18 @@ totalUYU += subtotalUYU;
       `;
     });
 
-    // ✅ Total en una línea
     cartItemsContainer.innerHTML = html;
-    totalElement.innerHTML = `
-      <strong>Total:</strong> U$S ${totalUSD.toFixed(2)} | $${totalUYU.toFixed(0)} UYU
-    `;
+    totalElement.innerHTML = `<strong>Total:</strong> U$S ${totalUSD.toFixed(2)} | $${totalUYU.toFixed(0)} UYU`;
 
-    // --- Escuchar cambios de cantidad ---
+    // actualizar costos (subtotal / envio / total)
+    calcularCostos(totalUYU);
+
+    // listeners para inputs de cantidad
     document.querySelectorAll(".cantidad-input").forEach(input => {
       input.addEventListener("input", (e) => {
         const index = e.target.dataset.index;
-        const newQty = parseInt(e.target.value);
-        if (newQty < 1) return;
+        const newQty = parseInt(e.target.value, 10);
+        if (isNaN(newQty) || newQty < 1) return;
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         cart[index].cantidad = newQty;
         localStorage.setItem("cart", JSON.stringify(cart));
@@ -84,7 +92,7 @@ totalUYU += subtotalUYU;
       });
     });
 
-    // --- Eliminar producto ---
+    // listeners para botones eliminar
     document.querySelectorAll(".eliminar-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const index = e.target.dataset.index;
@@ -97,21 +105,161 @@ totalUYU += subtotalUYU;
     });
   }
 
-  renderCart();
+  // --- listener para cambio de tipo de envío (actualiza costos) ---
+  function attachEnvioListeners() {
+    document.querySelectorAll("input[name='tipoEnvio']").forEach(radio => {
+      radio.addEventListener("change", () => {
+        // recalcular subtotal en UYU desde el cart
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let totalUYU = 0;
+        cart.forEach(item => {
+          const subtotal = item.cost * item.cantidad;
+          if (item.currency === "USD") totalUYU += subtotal * USD_TO_UYU;
+          else totalUYU += subtotal;
+        });
+        calcularCostos(totalUYU);
+      });
+    });
+  }
+
+  // --- mostrar/ocultar campos de forma de pago (opcional visual) ---
+  function attachPagoListeners() {
+    const tarjetaDiv = document.getElementById("datos-tarjeta");
+    const transfDiv = document.getElementById("datos-transferencia");
+    document.querySelectorAll("input[name='tipoPago']").forEach(radio => {
+      radio.addEventListener("change", () => {
+        if (radio.value === "tarjeta") {
+          tarjetaDiv.style.display = "block";
+          transfDiv.style.display = "none";
+        } else if (radio.value === "transferencia") {
+          tarjetaDiv.style.display = "none";
+          transfDiv.style.display = "block";
+        }
+      });
+    });
+  }
 
   // --- Botón “Seguir comprando” ---
   document.querySelector(".seguir").addEventListener("click", () => {
     window.location.href = "products.html";
   });
 
-  // --- Botón “Finalizar compra” ---
-  document.querySelector(".finalizar").addEventListener("click", () => {
-    alert("¡Gracias por tu compra! 🛍️");
-    localStorage.removeItem("cart");
-    renderCart();
-    document.dispatchEvent(new Event("cartUpdated"));
-  });
+// --- Botón “Finalizar compra” con validaciones ---
+document.querySelector(".finalizar").addEventListener("click", () => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // --- Actualizar al recibir cambios desde otras páginas ---
+  // 1. Validar carrito vacío
+  if (cart.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  // 2. Validar cantidades
+  for (let item of cart) {
+    if (!item.cantidad || item.cantidad < 1) {
+      alert("Todas las cantidades deben ser mayores a 0.");
+      return;
+    }
+  }
+
+  // 3. Validar dirección completa
+  const camposDireccion = ["departamento", "localidad", "calle", "numdepuerta", "esquina"];
+  let validoDireccion = true;
+
+  for (let c of camposDireccion) {
+    const el = document.getElementById(c);
+    const err = document.getElementById("err-" + c);
+
+    if (!el || !el.value.trim()) {
+      if (el) el.style.border = "2px solid red";
+      if (err) err.style.display = "inline";
+      validoDireccion = false;
+    } else {
+      if (el) el.style.border = "";
+      if (err) err.style.display = "none";
+    }
+  }
+
+  if (!validoDireccion) {
+    alert("Completa todos los campos de la dirección.");
+    return;
+  }
+
+  // 4. Validar envío seleccionado
+  const envio = document.querySelector("input[name='tipoEnvio']:checked");
+  const errEnvio = document.getElementById("err-envio");
+
+  if (!envio) {
+    if (errEnvio) errEnvio.classList.add("error-visible");
+    alert("Selecciona un método de envío.");
+    return;
+  } else {
+    if (errEnvio) errEnvio.classList.remove("error-visible");
+  }
+
+  // 5. Validar pago seleccionado
+  const pago = document.querySelector("input[name='tipoPago']:checked");
+  const errPago = document.getElementById("err-pago");
+
+  if (!pago) {
+    if (errPago) errPago.style.display = "inline";
+    alert("Selecciona un método de pago.");
+    return;
+  } else {
+    if (errPago) errPago.style.display = "none";
+  }
+
+  // 6. Validar campos específicos de pago
+  if (pago.value === "tarjeta") {
+    const n = document.getElementById("tarjeta-num")?.value.trim();
+    const t = document.getElementById("tarjeta-tit")?.value.trim();
+
+    if (!n || !t) {
+      alert("Completa los datos de la tarjeta.");
+      return;
+    }
+  } else if (pago.value === "transferencia") {
+    const cbu = document.getElementById("ctacte")?.value.trim();
+    if (!cbu) {
+      alert("Completa los datos de la transferencia.");
+      return;
+    }
+  }
+
+  // 7. ✅ Si pasa todas las validaciones, mostrar éxito
+  alert("¡Compra realizada con éxito! 🎉");
+  localStorage.removeItem("cart");
+  
+  // Limpiar formulario después de compra exitosa
+  const formulario = document.querySelector("form");
+  if (formulario) formulario.reset();
+  
+  // Limpiar estilos de error de dirección
+  for (let c of camposDireccion) {
+    const el = document.getElementById(c);
+    const err = document.getElementById("err-" + c);
+    if (el) el.style.border = "";
+    if (err) err.style.display = "none";
+  }
+  
+  // Ejecutar funciones de actualización
+  if (typeof renderCart === 'function') {
+    renderCart();
+  }
+  
+  document.dispatchEvent(new Event("cartUpdated"));
+  
+  // Opcional: Redirigir a página de agradecimiento
+  // setTimeout(() => {
+  //   window.location.href = "gracias.html";
+  // }, 2000);
+});
+
+  // actualizar cuando otras páginas emiten cartUpdated
   document.addEventListener("cartUpdated", renderCart);
+
+  // inicializar
+  renderCart();
+  attachEnvioListeners();
+  attachPagoListeners();
 });
