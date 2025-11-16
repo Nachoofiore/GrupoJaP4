@@ -144,16 +144,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "products.html";
   });
 
-  // --- Botón “Finalizar compra” con validaciones ---
+// --- Botón “Finalizar compra” con validaciones ---
 document.querySelector(".finalizar").addEventListener("click", () => {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+  // 1. Validar carrito vacío
   if (cart.length === 0) {
     alert("Tu carrito está vacío.");
     return;
   }
 
-  // cantidades válidas
+  // 2. Validar cantidades
   for (let item of cart) {
     if (!item.cantidad || item.cantidad < 1) {
       alert("Todas las cantidades deben ser mayores a 0.");
@@ -161,7 +162,7 @@ document.querySelector(".finalizar").addEventListener("click", () => {
     }
   }
 
-  // dirección completa + borde rojo + texto CAMPOS OBLIGATORIOS
+  // 3. Validar dirección completa
   const camposDireccion = ["departamento", "localidad", "calle", "numdepuerta", "esquina"];
   let validoDireccion = true;
 
@@ -169,13 +170,13 @@ document.querySelector(".finalizar").addEventListener("click", () => {
     const el = document.getElementById(c);
     const err = document.getElementById("err-" + c);
 
-    if (!el.value.trim()) {
-      el.style.border = "2px solid red";     // 🔴 BORDE ROJO
-      err.style.display = "inline";          // 🔴 MOSTRAR “campo obligatorio”
+    if (!el || !el.value.trim()) {
+      if (el) el.style.border = "2px solid red";
+      if (err) err.style.display = "inline";
       validoDireccion = false;
     } else {
-      el.style.border = "";                  
-      err.style.display = "none";
+      if (el) el.style.border = "";
+      if (err) err.style.display = "none";
     }
   }
 
@@ -184,53 +185,75 @@ document.querySelector(".finalizar").addEventListener("click", () => {
     return;
   }
 
-  // envío seleccionado + aviso
+  // 4. Validar envío seleccionado
   const envio = document.querySelector("input[name='tipoEnvio']:checked");
   const errEnvio = document.getElementById("err-envio");
 
   if (!envio) {
-   errEnvio.classList.add("error-visible");
-
+    if (errEnvio) errEnvio.classList.add("error-visible");
+    alert("Selecciona un método de envío.");
     return;
   } else {
-    errEnvio.classList.remove("error-visible");
-
+    if (errEnvio) errEnvio.classList.remove("error-visible");
   }
 
-  // pago seleccionado + aviso
+  // 5. Validar pago seleccionado
   const pago = document.querySelector("input[name='tipoPago']:checked");
   const errPago = document.getElementById("err-pago");
 
   if (!pago) {
-    errPago.style.display = "inline";
+    if (errPago) errPago.style.display = "inline";
+    alert("Selecciona un método de pago.");
     return;
   } else {
-    errPago.style.display = "none";
+    if (errPago) errPago.style.display = "none";
   }
 
-  // validar campos de la forma de pago seleccionada (ejemplo)
+  // 6. Validar campos específicos de pago
   if (pago.value === "tarjeta") {
-    const n = document.getElementById("tarjeta-num").value.trim();
-    const t = document.getElementById("tarjeta-tit").value.trim();
+    const n = document.getElementById("tarjeta-num")?.value.trim();
+    const t = document.getElementById("tarjeta-tit")?.value.trim();
 
     if (!n || !t) {
       alert("Completa los datos de la tarjeta.");
       return;
     }
   } else if (pago.value === "transferencia") {
-    const cbu = document.getElementById("ctacte").value.trim();
+    const cbu = document.getElementById("ctacte")?.value.trim();
     if (!cbu) {
       alert("Completa los datos de la transferencia.");
       return;
     }
   }
 
+  // 7. ✅ Si pasa todas las validaciones, mostrar éxito
   alert("¡Compra realizada con éxito! 🎉");
   localStorage.removeItem("cart");
-  renderCart();
+  
+  // Limpiar formulario después de compra exitosa
+  const formulario = document.querySelector("form");
+  if (formulario) formulario.reset();
+  
+  // Limpiar estilos de error de dirección
+  for (let c of camposDireccion) {
+    const el = document.getElementById(c);
+    const err = document.getElementById("err-" + c);
+    if (el) el.style.border = "";
+    if (err) err.style.display = "none";
+  }
+  
+  // Ejecutar funciones de actualización
+  if (typeof renderCart === 'function') {
+    renderCart();
+  }
+  
   document.dispatchEvent(new Event("cartUpdated"));
+  
+  // Opcional: Redirigir a página de agradecimiento
+  // setTimeout(() => {
+  //   window.location.href = "gracias.html";
+  // }, 2000);
 });
-
 
   // actualizar cuando otras páginas emiten cartUpdated
   document.addEventListener("cartUpdated", renderCart);
