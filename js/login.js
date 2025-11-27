@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const contrasenaInput = document.getElementById("contrasena");
   const errorMsg = document.getElementById("error-msg");
 
-  btnIngresar.addEventListener("click", function(event) {
+  btnIngresar.addEventListener("click", async function(event) {
     event.preventDefault();
 
     const usuario = usuarioInput.value.trim();
@@ -20,11 +20,17 @@ document.addEventListener("DOMContentLoaded", function() {
       mostrarError("La contraseña debe tener al menos 6 caracteres.");
       return;
     }
-     // Guardar en localStorage con la misma clave que usa index.js
-    localStorage.setItem("username", usuario);
 
-    // Redirigir al index
-    window.location.href = "index.html";
+    // Llamar a la función de login
+    const resultado = await login(usuario, contrasena);
+
+    console.log(resultado);
+
+    if (resultado.error) {
+      mostrarError("Error en el inicio de sesión: " + resultado.error);
+      return;
+    }
+
   });
 
   function mostrarError(mensaje) {
@@ -110,4 +116,36 @@ function desactivarModoOscuro() {
     btn.classList.remove("btn-outline-light");
     btn.classList.add("btn-outline-dark");
   });
+}
+
+async function login(username, password) {
+  try {
+    const res = await fetch("http://localhost:3000/outh", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+
+    if (!res.ok) {
+      throw new Error("Error en el inicio de sesión");
+    }
+
+    // Parsear el body (donde te llega el token)
+    const data = await res.json();
+
+    // Si querés guardar el token localmente
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", username);
+      window.location.href = "index.html";
+    }
+
+    return data;
+  } catch (err) {
+    console.log(err.message)
+    return { message: "Login error:", error: err.message };
+  }
 }

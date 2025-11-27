@@ -76,3 +76,4 @@ function desactivarModoOscuro() {
     btn.classList.add("btn-outline-dark");
   });
 }
+
