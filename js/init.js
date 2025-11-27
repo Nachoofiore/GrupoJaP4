@@ -6,6 +6,11 @@ const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/products_comments";
 const CART_INFO_URL = "http://localhost:3000/user_cart";
 const CART_BUY_URL = "http://localhost:3000/cart/buy";
 
+
+let showSpinner = function(){
+  document.getElementById("spinner-wrapper").style.display = "block";
+}
+
 let hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
