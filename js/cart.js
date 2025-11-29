@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 // --- Botón “Finalizar compra” con validaciones ---
-document.querySelector(".finalizar").addEventListener("click", () => {
+document.querySelector(".finalizar").addEventListener("click", async () => {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // 1. Validar carrito vacío
@@ -226,40 +226,91 @@ document.querySelector(".finalizar").addEventListener("click", () => {
     }
   }
 
-  // 7. ✅ Si pasa todas las validaciones, mostrar éxito
+  // ---------------------------
+  // 7. ENVIAR AL BACKEND AQUÍ
+  // ---------------------------
+  const ok = await enviarCarritoAlServidor();
+
+  if (!ok) return; // si falló, NO continuar
+
+  // 8. Mostrar éxito SOLO si se guardó en backend
   alert("¡Compra realizada con éxito! 🎉");
+
   localStorage.removeItem("cart");
-  
-  // Limpiar formulario después de compra exitosa
+
+  // Limpiar formulario
   const formulario = document.querySelector("form");
   if (formulario) formulario.reset();
-  
-  // Limpiar estilos de error de dirección
+
+  // Limpiar estilo de errores
   for (let c of camposDireccion) {
     const el = document.getElementById(c);
     const err = document.getElementById("err-" + c);
     if (el) el.style.border = "";
     if (err) err.style.display = "none";
   }
-  
-  // Ejecutar funciones de actualización
+
+  // Actualizar la vista del carrito
   if (typeof renderCart === 'function') {
     renderCart();
   }
-  
+
   document.dispatchEvent(new Event("cartUpdated"));
-  
-  // Opcional: Redirigir a página de agradecimiento
-  // setTimeout(() => {
-  //   window.location.href = "gracias.html";
-  // }, 2000);
 });
 
-  // actualizar cuando otras páginas emiten cartUpdated
-  document.addEventListener("cartUpdated", renderCart);
+// actualizar cuando otras páginas emiten cartUpdated
+document.addEventListener("cartUpdated", renderCart);
 
-  // inicializar
-  renderCart();
-  attachEnvioListeners();
-  attachPagoListeners();
+// inicializar
+renderCart();
+attachEnvioListeners();
+attachPagoListeners();
+
+
+// -----------------------------------------------------
+// --- Función que envía el carrito al servidor ---
+// -----------------------------------------------------
+async function enviarCarritoAlServidor() {
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Calcular total en UYU igual que en el carrito
+  let totalUYU = 0;
+  cartItems.forEach(item => {
+    const subtotal = item.cost * item.cantidad;
+    if (item.currency === "USD") {
+      totalUYU += subtotal * USD_TO_UYU;
+    } else {
+      totalUYU += subtotal;
+    }
+  });
+
+  const body = {
+    user_id: localStorage.getItem("userId") || null,
+    items: cartItems,
+    total: totalUYU
+  };
+
+  try {
+    const response = await fetch("http://localhost:3000/cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return true; // éxito
+    } else {
+      console.log("Error:", data);
+      alert("No se pudo guardar el carrito.");
+      return false;
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Error de conexión con el servidor.");
+    return false;
+  }
+}
 });
