@@ -135,17 +135,15 @@ async function login(username, password) {
 
     // Parsear el body (donde te llega el token)
     const data = await res.json();
+ // Guardar token e info del usuario
+if (data.token) {
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("username", username);
 
-    // Si querés guardar el token localmente
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("username", username);
-      window.location.href = "index.html";
-    }
-
-    return data;
-  } catch (err) {
-    console.log(err.message)
-    return { message: "Login error:", error: err.message };
+  // 🔥 IMPORTANTE: Guardar el userId real
+  if (data.user && data.user.id) {
+    localStorage.setItem("userId", data.user.id);
   }
-}
+
+  window.location.href = "index.html";
+};
