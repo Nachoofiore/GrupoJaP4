@@ -11,6 +11,9 @@ En este proyecto se utilizó lo aprendido en clase:
 - JSON
 - Bootstrap
 - Figma
+- NODE.js
+- Express.js
+- MySQL
 
 # Instructivo paso a paso de como ejecutar el proyecto del backend
 
