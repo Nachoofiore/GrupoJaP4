@@ -2,7 +2,15 @@
                                                                                                                                                                                        
 # SOLUGINAMA
 Soluginama es un sitio de eCommerce donde se puede encontrar una amplia gama de productos, que va desde autos hasta juguetes. 
-Este sitio fue desarrollado en el marco del proyecto semestral de la Fase 1 de Jovenes a Programar de Ceibal, donde se aplico lo aprendido en clase, como HTML, CSS, JSON, Bootstrap y Figma entre otros.
+Este sitio fue desarrollado en el marco del proyecto semestral de la Fase 1 de Jovenes a Programar de Ceibal. 
+
+# Tecnologías utilizadas
+En este proyecto se utilizó lo aprendido en clase:
+- HTML
+- CSS
+- JSON
+- Bootstrap
+- Figma
 
 # Instructivo paso a paso de como ejecutar el proyecto del backend
 
