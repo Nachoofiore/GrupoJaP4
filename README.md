@@ -23,4 +23,4 @@ En este proyecto se utilizó lo aprendido en clase:
 2. En el archivo Backend seleccionar la terminal Git Bash e ingresar “npm run dev”.
 3. Abrir el Frontend en la web.
 4. Ingresar al eCommerce, en este caso “Soluginama”, con uno de los usuarios habilitados.
-   - Se encuentran en la carpeta OUTH dentro del Backend.
+   - Los usuarios habilitados se encuentran en la carpeta OUTH dentro del Backend.
