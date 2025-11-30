@@ -128,22 +128,29 @@ async function login(username, password) {
       body: JSON.stringify({ username, password }),
     });
 
-
     if (!res.ok) {
       throw new Error("Error en el inicio de sesión");
     }
 
-    // Parsear el body (donde te llega el token)
     const data = await res.json();
- // Guardar token e info del usuario
-if (data.token) {
-  localStorage.setItem("token", data.token);
-  localStorage.setItem("username", username);
 
-  // 🔥 IMPORTANTE: Guardar el userId real
-  if (data.user && data.user.id) {
-    localStorage.setItem("userId", data.user.id);
+    // Guardar token e info
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", username);
+
+      if (data.user && data.user.id) {
+        localStorage.setItem("userId", data.user.id);
+      }
+
+      window.location.href = "index.html";
+    } else {
+      // <--- AHORA ESTE ELSE ES VÁLIDO
+      alert("Credenciales incorrectas o token inválido.");
+    }
+
+  } catch (error) {
+    console.error("Error en login:", error);
+    alert(error.message);
   }
-
-  window.location.href = "index.html";
-};
+}
