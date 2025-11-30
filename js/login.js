@@ -145,7 +145,7 @@ async function login(username, password) {
 
       window.location.href = "index.html";
     } else {
-      // <--- AHORA ESTE ELSE ES VÁLIDO
+    
       alert("Credenciales incorrectas o token inválido.");
     }
 
